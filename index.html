@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DESCANSOS — MARZO 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cyan: #00f5ff;
+    --magenta: #ff00aa;
+    --dark: #020510;
+    --glow-cyan: 0 0 20px #00f5ff88, 0 0 60px #00f5ff33;
+    --glow-mag: 0 0 20px #ff00aa88, 0 0 60px #ff00aa33;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--dark);
+    color: #e0f0ff;
+    font-family: 'Share Tech Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,245,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,245,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+    pointer-events: none; z-index: 0;
+  }
+  @keyframes gridMove { from{background-position:0 0} to{background-position:60px 60px} }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px);
+    pointer-events: none; z-index: 1000;
+  }
+  .container { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+  header { padding: 3rem 0 1rem; text-align: center; }
+  .top-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: .62rem; letter-spacing: .2em; color: var(--cyan); opacity: .6; margin-bottom: 2.5rem;
+  }
+  .top-bar span { animation: blink 3s step-end infinite; }
+  .top-bar span:nth-child(2) { animation-delay: 1.5s; }
+  @keyframes blink { 0%,100%{opacity:.6} 50%{opacity:.2} }
+
+  h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(3rem,9vw,7rem); font-weight: 900; letter-spacing: .15em;
+    color: #fff; text-shadow: var(--glow-cyan); position: relative; display: inline-block;
+    animation: titleIn 1s ease-out forwards;
+  }
+  @keyframes titleIn { from{opacity:0;transform:translateY(-30px)} to{opacity:1;transform:none} }
+  h1::before,h1::after { content:'DESCANSOS'; position:absolute; inset:0; pointer-events:none; }
+  h1::before { color:var(--cyan); animation:g1 7s infinite; clip-path:polygon(0 0,100% 0,100% 40%,0 40%); }
+  h1::after  { color:var(--magenta); animation:g2 7s infinite; clip-path:polygon(0 60%,100% 60%,100% 100%,0 100%); }
+  @keyframes g1 { 0%,88%,100%{transform:none;opacity:0} 90%{transform:translate(-3px,1px);opacity:.8} 93%{transform:none;opacity:0} }
+  @keyframes g2 { 0%,88%,100%{transform:none;opacity:0} 91%{transform:translate(3px,2px);opacity:.7} 94%{transform:none;opacity:0} }
+
+  .subtitle { font-size:.7rem; letter-spacing:.4em; color:var(--cyan); margin-top:.8rem; opacity:0; animation:fadeUp 1s .5s ease-out forwards; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:.7;transform:none} }
+
+  .line-deco { display:flex; align-items:center; gap:1rem; margin:2rem 0; }
+  .line-deco::before,.line-deco::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--cyan),transparent); }
+  .ldi { width:8px;height:8px;border:1px solid var(--cyan);transform:rotate(45deg);box-shadow:var(--glow-cyan); }
+
+  .section-label {
+    font-size:.58rem; letter-spacing:.4em; color:var(--magenta); margin-bottom:1.2rem;
+    display:flex; align-items:center; gap:1rem;
+  }
+  .section-label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--magenta),transparent); opacity:.3; }
+
+  /* SELECTOR */
+  .selector-wrap { margin-bottom:2rem; }
+  .select-container { position:relative; display:inline-block; width:100%; max-width:520px; }
+  select {
+    width:100%; font-family:'Share Tech Mono',monospace; font-size:.8rem; letter-spacing:.12em;
+    padding:.9rem 3rem .9rem 1.2rem;
+    background:rgba(0,245,255,.05); border:1px solid var(--cyan);
+    color:var(--cyan); cursor:crosshair; appearance:none; outline:none;
+    transition:all .2s; box-shadow:var(--glow-cyan);
+  }
+  select:hover,select:focus { background:rgba(0,245,255,.1); }
+  select option { background:#040d1e; color:#e0f0ff; }
+  .sel-arrow { position:absolute;right:1rem;top:50%;transform:translateY(-50%);color:var(--cyan);pointer-events:none;font-size:.8rem; }
+
+  /* INFO PANEL */
+  .info-panel {
+    border:1px solid rgba(0,245,255,.2); padding:1.8rem 2rem;
+    background:radial-gradient(ellipse at top left,rgba(0,245,255,.05),transparent 60%);
+    margin-bottom:3rem; min-height:130px; position:relative; transition:all .3s;
+  }
+  .info-panel::before { content:'';position:absolute;top:0;right:0;width:20px;height:20px;border-top:2px solid var(--cyan);border-right:2px solid var(--cyan); }
+  .info-panel::after  { content:'';position:absolute;bottom:0;left:0;width:20px;height:20px;border-bottom:2px solid var(--magenta);border-left:2px solid var(--magenta); }
+  .info-name { font-family:'Orbitron',sans-serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:.8rem;letter-spacing:.1em;text-shadow:var(--glow-cyan); }
+  .info-intro { font-size:.65rem;color:rgba(0,245,255,.5);letter-spacing:.2em;margin-bottom:.7rem;margin-top:.8rem; }
+  .info-days { display:flex;flex-wrap:wrap;gap:.5rem; }
+  .day-badge {
+    font-family:'Orbitron',sans-serif;font-size:.62rem;padding:.3rem .7rem;
+    border:1px solid var(--cyan);color:var(--cyan);box-shadow:0 0 8px rgba(0,245,255,.3);letter-spacing:.08em;
+  }
+  .day-badge.work { border-color:rgba(255,0,170,.5);color:var(--magenta);box-shadow:0 0 8px rgba(255,0,170,.2); }
+  .info-placeholder { font-size:.75rem;color:rgba(0,245,255,.3);letter-spacing:.12em;padding:1rem 0; }
+
+  /* TABLE */
+  .table-wrap { overflow-x:auto; margin-bottom:4rem; }
+  table { width:100%;border-collapse:collapse;font-size:.62rem;min-width:700px; }
+  thead th {
+    font-family:'Orbitron',sans-serif;letter-spacing:.1em;padding:.75rem .5rem;
+    border:1px solid rgba(0,245,255,.2);background:rgba(0,245,255,.08);
+    color:var(--cyan);text-align:center;font-size:.58rem;white-space:nowrap;
+  }
+  thead th:first-child { color:var(--magenta);border-color:rgba(255,0,170,.3);background:rgba(255,0,170,.05); }
+  tbody tr:hover { background:rgba(0,245,255,.03); }
+  td { padding:.5rem .55rem;border:1px solid rgba(0,245,255,.09);text-align:center;vertical-align:top;line-height:1.6;color:rgba(200,230,255,.8); }
+  td:first-child { font-family:'Orbitron',sans-serif;font-size:.55rem;font-weight:700;color:var(--cyan);letter-spacing:.08em;white-space:nowrap;border-color:rgba(0,245,255,.2);background:rgba(0,245,255,.03); }
+  td.date-row { color:rgba(0,245,255,.5);font-size:.55rem;letter-spacing:.08em; }
+  td.hl { background:rgba(0,245,255,.12)!important;color:var(--cyan)!important;text-shadow:var(--glow-cyan);font-weight:bold; }
+  td.week-note-cell { padding:0;border:none;background:transparent; }
+  .wnote { font-size:.53rem;color:rgba(255,200,100,.7);border:1px solid rgba(255,200,100,.2);padding:.5rem .9rem;margin:.2rem 0 .5rem;background:rgba(255,200,100,.03);letter-spacing:.04em;line-height:1.7;text-align:left; }
+  .spacer { height:.6rem;border:none!important;background:transparent!important; }
+
+  footer { border-top:1px solid rgba(0,245,255,.1);padding:2.5rem 0;text-align:center; }
+  .footer-main { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:.25em;color:var(--cyan);text-shadow:var(--glow-cyan);margin-bottom:.8rem; }
+  .footer-sub { font-size:.55rem;letter-spacing:.25em;color:rgba(0,245,255,.25); }
+
+  .particle { position:fixed;width:2px;height:2px;border-radius:50%;opacity:0;animation:pf linear infinite;pointer-events:none;z-index:5; }
+  @keyframes pf { 0%{transform:translateY(100vh);opacity:0} 10%{opacity:.6} 90%{opacity:.3} 100%{transform:translateY(-10vh);opacity:0} }
+
+  @media(max-width:600px){
+    .top-bar span:first-child,.top-bar span:last-child{display:none}
+    .info-panel{padding:1rem}
+  }
+</style>
+</head>
+<body>
+
+<script>
+for(let i=0;i<18;i++){
+  const p=document.createElement('div');p.className='particle';
+  p.style.left=Math.random()*100+'vw';
+  p.style.animationDuration=(9+Math.random()*12)+'s';
+  p.style.animationDelay=(Math.random()*10)+'s';
+  p.style.background=Math.random()>.5?'#00f5ff':'#ff00aa';
+  document.body.appendChild(p);
+}
+</script>
+
+<div class="container">
+  <header>
+    <div class="top-bar">
+      <span>SYS::CUADRANTE_LIMPIEZA_PUEBLOS</span>
+      <span id="clock">--:--:--</span>
+      <span>PROTOCOLO ACTIVO — MARZO 2026</span>
+    </div>
+    <h1>DESCANSOS</h1>
+    <p class="subtitle">Cuadrante de Descansos — Limpieza de Pueblos — Marzo 2026</p>
+  </header>
+
+  <div class="line-deco"><div class="ldi"></div></div>
+
+  <!-- SELECTOR -->
+  <section class="selector-wrap">
+    <div class="section-label">// SELECCIÓN DE OPERARIO //</div>
+    <div class="select-container">
+      <select id="workerSelect" onchange="updatePanel()">
+        <option value="">— SELECCIONA UN OPERARIO —</option>
+      </select>
+      <div class="sel-arrow">▼</div>
+    </div>
+  </section>
+
+  <!-- INFO PANEL -->
+  <section>
+    <div class="section-label">// DÍAS DE DESCANSO DEL OPERARIO SELECCIONADO //</div>
+    <div class="info-panel" id="infoPanel">
+      <p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO EN MARZO 2026</p>
+    </div>
+  </section>
+
+  <!-- TABLE -->
+  <section>
+    <div class="section-label">// CUADRANTE COMPLETO — MARZO 2026 //</div>
+    <div class="table-wrap" id="tableWrap"></div>
+  </section>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-main">ESTA WEB ES DE JAVI TJ</div>
+    <div class="footer-sub">SISTEMA DE GESTIÓN DE DESCANSOS — LIMPIEZA DE PUEBLOS — MARZO 2026</div>
+  </div>
+</footer>
+
+<script>
+function updateClock(){
+  const n=new Date();
+  document.getElementById('clock').textContent=
+    String(n.getHours()).padStart(2,'0')+':'+
+    String(n.getMinutes()).padStart(2,'0')+':'+
+    String(n.getSeconds()).padStart(2,'0');
+}
+setInterval(updateClock,1000);updateClock();
+
+const weeks=[
+  {
+    dates:['LUN 02','MAR 03','MIÉ 04','JUE 05','VIE 06','SÁB 07','DOM 08'],
+    nums:[2,3,4,5,6,7,8],
+    workers:[
+      ['LUIS FCO. ALONSO','RUBEN DARIO','VICTORIANO ANCA','CIPRIAN BAESU','LUIS FCO. ALONSO','EMILIO MARCOS','RUBEN DARIO'],
+      ['','JAVIER MENENDEZ','JUAN PRIETO','JUAN PRIETO','CIPRIAN BAESU','JAGOBA','ALFONSO TORRES'],
+      ['LUCIANO','','LUIS ALFREDO','MARCOS PEREIRA','','DANIEL LOPEZ','EMILIO MARCOS'],
+      ['MARCOS PEREIRA','','MARCOS PEREIRA','','','','DANIEL LOPEZ'],
+      ['','','','','','','LUCIANO'],
+      ['','','','','','JESUS P. OLIVA','JESUS P. OLIVA'],
+    ],
+    note:'DANIEL: LUNES EN LA BRIGADA, MARTES BARRIDO EN POSADA, MIERCOLES PUEBLOS, JUEVES CONTENEDORES, VIERNES REPASO | LUCIANO EL SABADO HACE EL BOLSEO 1ª Y 2ª HORA + CMAR | LUIS FCO. ALONSO EL DOMINGO: 4 HORAS MAÑANA + 3 HORAS TARDE DE REPASO'
+  },
+  {
+    dates:['LUN 09','MAR 10','MIÉ 11','JUE 12','VIE 13','SÁB 14','DOM 15'],
+    nums:[9,10,11,12,13,14,15],
+    workers:[
+      ['JAVIER MENENDEZ','','','VICTORIANO ANCA','VICTORIANO ANCA','LUIS FCO. ALONSO','RUBEN DARIO'],
+      ['','','CIPRIAN BAESU','','BAMBA','EMILIO MARCOS','JAVIER MENENDEZ'],
+      ['ALFREDO','','JUAN PRIETO','ALFONSO TORRES','JAGOBA','JAGOBA','LUCIANO'],
+      ['','','LUIS ALFREDO','','','','JESUS P. OLIVA'],
+      ['','','MARCOS PEREIRA','','','','BAMBA'],
+      ['','','DANIEL LOPEZ','','','','ALFONSO TORRES'],
+    ],
+    note:'DANIEL: LUNES BRIGADA, MARTES PUEBLOS, JUEVES EN NUEVA, VIERNES BARRIDO EN LLANES, SAB Y DOM BARREDORA | LUCIANO EL SAB HACE EL BOLSEO 1ª Y 2ª HORA + CMAR | JESUS EL SABADO REPASO | ALONSO MARTES EN LA BRIGADA — JAVIER MENENDEZ MARTES REPASO'
+  },
+  {
+    dates:['LUN 16','MAR 17','MIÉ 18','JUE 19','VIE 20','SÁB 21','DOM 22'],
+    nums:[16,17,18,19,20,21,22],
+    workers:[
+      ['VICTORIANO ANCA','RUBEN DARIO','CIPRIAN BAESU','LUIS FCO. ALONSO','LUIS FCO. ALONSO','EMILIO MARCOS','RUBEN DARIO'],
+      ['','CIPRIAN BAESU','JUAN PRIETO','JUAN PRIETO','EMILIO MARCOS','DANIEL LOPEZ','JAVIER MENENDEZ'],
+      ['LUCIANO','','LUIS ALFREDO','','','JESUS P. OLIVA','LUCIANO'],
+      ['MARCOS PEREIRA','','MARCOS PEREIRA','','','JAGOBA','JESUS P. OLIVA'],
+      ['','','','','','','BAMBA'],
+      ['','','','','','','DANIEL LOPEZ'],
+    ],
+    note:'DANIEL: LUNES EN LA BRIGADA, MARTES EN POSADA, MIERCOLES PUEBLOS, JUEVES CONTENEDORES, VIERNES REPASO | LUCIANO EL SAB HACE EL BOLSEO 1ª Y 2ª HORA + CMAR | LUIS FCO. ALONSO EL DOMINGO: 4H MAÑANA + 3H TARDE | DOM 22 — DOMINGO DE ALFONSO'
+  },
+  {
+    dates:['LUN 23','MAR 24','MIÉ 25','JUE 26','VIE 27','SÁB 28','DOM 29'],
+    nums:[23,24,25,26,27,28,29],
+    workers:[
+      ['CIPRIAN BAESU','VICTORIANO ANCA','JAVIER MENENDEZ','ALFONSO TORRES','BAMBA','LUIS FCO. ALONSO','RUBEN DARIO'],
+      ['','','JUAN PRIETO','JAVIER MENENDEZ','EMILIO MARCOS','','VICTORIANO ANCA'],
+      ['ALFREDO','','LUIS ALFREDO','','JAGOBA','JAGOBA','JESUS P. OLIVA'],
+      ['','','MARCOS PEREIRA','','','','LUCIANO'],
+      ['','','DANIEL LOPEZ','','','','BAMBA'],
+      ['','','','','','','ALFONSO TORRES'],
+    ],
+    note:'DANIEL: LUNES Y MARTES EN LA BRIGADA, JUEVES EN NUEVA, VIERNES BARRIDO EN LLANES, SAB Y DOM BARREDORA | LUCIANO EL SAB HACE EL BOLSEO 1ª Y 2ª HORA + CMAR | JESUS EL VIERNES LIMPIEZA EN POO — EL SAB REPASO'
+  },
+  {
+    dates:['LUN 30','MAR 31','MIÉ 01','JUE 02','VIE 03','SÁB 04','DOM 05'],
+    nums:[30,31,null,null,null,null,null],
+    workers:[
+      ['VICTORIANO ANCA','RUBEN DARIO','CIPRIAN BAESU','LUIS FCO. ALONSO','LUIS FCO. ALONSO','EMILIO MARCOS','EMILIO MARCOS'],
+      ['LUCIANO','CIPRIAN BAESU','JUAN PRIETO','JUAN PRIETO','JAVIER MENENDEZ','JAGOBA','LUCIANO'],
+      ['MARCOS PEREIRA','','LUIS ALFREDO','','','JESUS P. OLIVA','JESUS P. OLIVA'],
+      ['','','MARCOS PEREIRA','','','','BAMBA'],
+      ['','','','','','','RUBEN DARIO'],
+      ['','','','','','','ALFONSO TORRES'],
+    ],
+    note:'DANIEL: LUNES EN LA BRIGADA, MARTES EN POSADA, MIERCOLES PUEBLOS, JUEVES CONTENEDORES, VIERNES REPASO | LUCIANO EL SAB HACE EL BOLSEO 1ª Y 2ª HORA + CMAR | LUIS FCO. ALONSO EL DOMINGO: 4H MAÑANA + 3H TARDE | ⚠ ESTA SEMANA PUEDE HABER CAMBIOS'
+  }
+];
+
+const allWorkers=new Set();
+weeks.forEach(w=>w.workers.forEach(row=>row.forEach(n=>{if(n.trim())allWorkers.add(n.trim())})));
+const sorted=[...allWorkers].sort();
+
+const sel=document.getElementById('workerSelect');
+sorted.forEach(name=>{
+  const o=document.createElement('option');o.value=name;o.textContent=name;sel.appendChild(o);
+});
+
+function getWorkDays(name){
+  const days=[];
+  weeks.forEach(week=>{
+    week.dates.forEach((date,di)=>{
+      const col=week.workers.map(row=>row[di]).filter(n=>n.trim());
+      if(col.includes(name)) days.push({date,num:week.nums[di]});
+    });
+  });
+  return days;
+}
+
+function updatePanel(){
+  const name=sel.value;
+  const panel=document.getElementById('infoPanel');
+  if(!name){
+    panel.innerHTML='<p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO EN MARZO 2026</p>';
+    renderTable('');return;
+  }
+  const workDays=getWorkDays(name);
+  const workNums=workDays.map(d=>d.num).filter(Boolean);
+  const allMar=Array.from({length:31},(_,i)=>i+1);
+  const restDays=allMar.filter(d=>!workNums.includes(d));
+
+  let html=`<div class="info-name">${name}</div>`;
+  html+=`<div class="info-intro">// DÍAS DE DESCANSO EN MARZO 2026 (${restDays.length} días):</div><div class="info-days">`;
+  restDays.forEach(d=>{ html+=`<span class="day-badge">${String(d).padStart(2,'0')} MAR</span>`; });
+  if(!restDays.length) html+=`<span style="font-size:.7rem;color:rgba(200,220,255,.4)">SIN DESCANSOS REGISTRADOS EN MARZO</span>`;
+  html+=`</div><div class="info-intro">// DÍAS TRABAJADOS EN EL CUADRANTE (${workDays.length} días):</div><div class="info-days">`;
+  workDays.forEach(d=>{ html+=`<span class="day-badge work">${d.date}</span>`; });
+  html+=`</div>`;
+  panel.innerHTML=html;
+  renderTable(name);
+}
+
+function renderTable(hl){
+  const wrap=document.getElementById('tableWrap');
+  const days=['LUNES','MARTES','MIÉRCOLES','JUEVES','VIERNES','SÁBADO','DOMINGO'];
+  let html='<table><thead><tr><th>SEM.</th>';
+  days.forEach(d=>html+=`<th>${d}</th>`);
+  html+='</tr></thead><tbody>';
+
+  weeks.forEach((week,wi)=>{
+    // Date row
+    html+=`<tr><td style="color:var(--magenta);font-size:.5rem;">SEM ${wi+1}</td>`;
+    week.dates.forEach(d=>html+=`<td class="date-row">${d}</td>`);
+    html+='</tr>';
+
+    // Worker rows
+    const maxR=week.workers.length;
+    for(let ri=0;ri<maxR;ri++){
+      html+='<tr><td></td>';
+      for(let di=0;di<7;di++){
+        const name=week.workers[ri][di]||'';
+        const isHl=hl&&name===hl;
+        html+=`<td${isHl?' class="hl"':''}>${name}</td>`;
+      }
+      html+='</tr>';
+    }
+
+    // Note
+    if(week.note){
+      html+=`<tr class="spacer"><td colspan="8" class="week-note-cell"><div class="wnote">${week.note}</div></td></tr>`;
+    }
+    html+=`<tr><td colspan="8" style="height:.8rem;border:none;background:transparent;"></td></tr>`;
+  });
+
+  html+='</tbody></table>';
+  wrap.innerHTML=html;
+}
+
+renderTable('');
+</script>
+</body>
+</html>
