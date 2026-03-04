@@ -76,6 +76,35 @@
   }
   .section-label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--magenta),transparent); opacity:.3; }
 
+  /* HOY PANEL */
+  .hoy-panel {
+    border:2px solid var(--cyan);
+    padding:2rem 2.5rem;
+    background:radial-gradient(ellipse at center,rgba(0,245,255,.08),transparent 70%);
+    position:relative;
+    box-shadow:var(--glow-cyan);
+    text-align:center;
+  }
+  .hoy-panel::before { content:'';position:absolute;top:0;right:0;width:28px;height:28px;border-top:3px solid var(--magenta);border-right:3px solid var(--magenta); }
+  .hoy-panel::after  { content:'';position:absolute;bottom:0;left:0;width:28px;height:28px;border-bottom:3px solid var(--magenta);border-left:3px solid var(--magenta); }
+  .hoy-date { font-size:.65rem;letter-spacing:.4em;color:rgba(0,245,255,.6);margin-bottom:.8rem; }
+  .hoy-title { font-family:'Orbitron',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.2em;color:var(--magenta);text-shadow:var(--glow-mag);margin-bottom:1.2rem; }
+  .hoy-names { display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center; }
+  .hoy-badge {
+    font-family:'Orbitron',sans-serif;font-size:.8rem;font-weight:700;
+    padding:.6rem 1.4rem;
+    border:2px solid var(--cyan);color:#fff;
+    background:rgba(0,245,255,.1);
+    box-shadow:var(--glow-cyan);
+    letter-spacing:.1em;
+    animation:pulseBadge 2s ease-in-out infinite;
+  }
+  @keyframes pulseBadge {
+    0%,100%{box-shadow:var(--glow-cyan)}
+    50%{box-shadow:0 0 30px #00f5ffaa,0 0 80px #00f5ff55}
+  }
+  .hoy-none { font-size:.75rem;color:rgba(0,245,255,.4);letter-spacing:.2em; }
+
   /* SELECTOR */
   .selector-wrap { margin-bottom:2rem; }
   .select-container { position:relative; display:inline-block; width:100%; max-width:520px; }
@@ -164,6 +193,12 @@ for(let i=0;i<18;i++){
   </header>
 
   <div class="line-deco"><div class="ldi"></div></div>
+
+  <!-- HOY PANEL -->
+  <section style="margin-bottom:2.5rem;">
+    <div class="section-label">// DESCANSAN HOY //</div>
+    <div class="hoy-panel" id="hoyPanel"></div>
+  </section>
 
   <!-- SELECTOR -->
   <section class="selector-wrap">
@@ -285,7 +320,8 @@ sorted.forEach(name=>{
   const o=document.createElement('option');o.value=name;o.textContent=name;sel.appendChild(o);
 });
 
-function getWorkDays(name){
+// Days in the cuadrante ARE rest days
+function getRestDays(name){
   const days=[];
   weeks.forEach(week=>{
     week.dates.forEach((date,di)=>{
@@ -296,6 +332,12 @@ function getWorkDays(name){
   return days;
 }
 
+function getWorkDays(name){
+  const restNums=getRestDays(name).map(d=>d.num).filter(Boolean);
+  const allMar=Array.from({length:31},(_,i)=>i+1);
+  return allMar.filter(d=>!restNums.includes(d));
+}
+
 function updatePanel(){
   const name=sel.value;
   const panel=document.getElementById('infoPanel');
@@ -303,21 +345,58 @@ function updatePanel(){
     panel.innerHTML='<p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO EN MARZO 2026</p>';
     renderTable('');return;
   }
-  const workDays=getWorkDays(name);
-  const workNums=workDays.map(d=>d.num).filter(Boolean);
-  const allMar=Array.from({length:31},(_,i)=>i+1);
-  const restDays=allMar.filter(d=>!workNums.includes(d));
+  const restDays=getRestDays(name);
 
   let html=`<div class="info-name">${name}</div>`;
-  html+=`<div class="info-intro">// DÍAS DE DESCANSO EN MARZO 2026 (${restDays.length} días):</div><div class="info-days">`;
-  restDays.forEach(d=>{ html+=`<span class="day-badge">${String(d).padStart(2,'0')} MAR</span>`; });
-  if(!restDays.length) html+=`<span style="font-size:.7rem;color:rgba(200,220,255,.4)">SIN DESCANSOS REGISTRADOS EN MARZO</span>`;
-  html+=`</div><div class="info-intro">// DÍAS TRABAJADOS EN EL CUADRANTE (${workDays.length} días):</div><div class="info-days">`;
-  workDays.forEach(d=>{ html+=`<span class="day-badge work">${d.date}</span>`; });
+  html+=`<div class="info-intro">// DÍAS DE DESCANSO EN MARZO 2026 (${restDays.length} días en el cuadrante):</div><div class="info-days">`;
+  restDays.forEach(d=>{ html+=`<span class="day-badge">${d.date}</span>`; });
+  if(!restDays.length) html+=`<span style="font-size:.7rem;color:rgba(200,220,255,.4)">SIN DESCANSOS EN EL CUADRANTE</span>`;
   html+=`</div>`;
   panel.innerHTML=html;
   renderTable(name);
 }
+
+// WHO RESTS TODAY
+function renderHoy(){
+  const today=new Date();
+  // Only show for March 2026
+  const isMarzo=(today.getFullYear()===2026&&today.getMonth()===2);
+  const dayNum=today.getDate();
+  const dayNames=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  const monthNames=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const dateStr=`${dayNames[today.getDay()]}, ${dayNum} de ${monthNames[today.getMonth()]} de ${today.getFullYear()}`;
+
+  const hoy=document.getElementById('hoyPanel');
+  let resting=[];
+
+  if(isMarzo){
+    weeks.forEach(week=>{
+      week.nums.forEach((num,di)=>{
+        if(num===dayNum){
+          week.workers.forEach(row=>{
+            const n=row[di];
+            if(n&&n.trim()&&!resting.includes(n.trim())) resting.push(n.trim());
+          });
+        }
+      });
+    });
+  }
+
+  let html=`<div class="hoy-date">HOY — ${dateStr.toUpperCase()}</div>`;
+  html+=`<div class="hoy-title">⬡ DESCANSAN HOY ⬡</div>`;
+  html+=`<div class="hoy-names">`;
+  if(resting.length){
+    resting.forEach(n=>{ html+=`<div class="hoy-badge">${n}</div>`; });
+  } else if(!isMarzo){
+    html+=`<span class="hoy-none">EL CUADRANTE CORRESPONDE A MARZO 2026 — SIN DATOS PARA HOY</span>`;
+  } else {
+    html+=`<span class="hoy-none">NINGÚN OPERARIO DESCANSA HOY</span>`;
+  }
+  html+=`</div>`;
+  hoy.innerHTML=html;
+}
+
+renderHoy();
 
 function renderTable(hl){
   const wrap=document.getElementById('tableWrap');
