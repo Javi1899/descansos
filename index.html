@@ -105,6 +105,52 @@
   }
   .hoy-none { font-size:.75rem;color:rgba(0,245,255,.4);letter-spacing:.2em; }
 
+  /* DAY BUTTONS */
+  .day-btns { display:flex;gap:1rem;flex-wrap:wrap; }
+  .day-btn {
+    font-family:'Orbitron',sans-serif;font-size:.72rem;font-weight:700;
+    letter-spacing:.18em;padding:.8rem 2rem;
+    border:2px solid rgba(0,245,255,.35);background:transparent;
+    color:rgba(0,245,255,.5);cursor:crosshair;
+    transition:all .25s;position:relative;overflow:hidden;
+  }
+  .day-btn::before {
+    content:'';position:absolute;inset:0;background:var(--cyan);
+    transform:scaleX(0);transform-origin:left;transition:transform .25s;z-index:0;
+  }
+  .day-btn:hover::before,.day-btn.active::before { transform:scaleX(1); }
+  .day-btn:hover span,.day-btn.active span { color:var(--dark); }
+  .day-btn span { position:relative;z-index:1;transition:color .25s; }
+  .day-btn.active {
+    border-color:var(--cyan);
+    box-shadow:var(--glow-cyan);
+  }
+
+  /* WORK PANEL */
+  .work-panel {
+    border:2px solid rgba(255,0,170,.4);
+    padding:2rem 2.5rem;
+    background:radial-gradient(ellipse at center,rgba(255,0,170,.06),transparent 70%);
+    position:relative;
+    box-shadow:var(--glow-mag);
+    text-align:center;
+  }
+  .work-panel::before { content:'';position:absolute;top:0;right:0;width:28px;height:28px;border-top:3px solid var(--cyan);border-right:3px solid var(--cyan); }
+  .work-panel::after  { content:'';position:absolute;bottom:0;left:0;width:28px;height:28px;border-bottom:3px solid var(--cyan);border-left:3px solid var(--cyan); }
+  .work-title { font-family:'Orbitron',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.2em;color:var(--magenta);text-shadow:var(--glow-mag);margin-bottom:1.2rem; }
+  .work-badge {
+    font-family:'Orbitron',sans-serif;font-size:.8rem;font-weight:700;
+    padding:.6rem 1.4rem;display:inline-block;
+    border:2px solid var(--magenta);color:#fff;
+    background:rgba(255,0,170,.1);
+    box-shadow:var(--glow-mag);letter-spacing:.1em;
+    animation:pulseBadgeMag 2s ease-in-out infinite;
+  }
+  @keyframes pulseBadgeMag {
+    0%,100%{box-shadow:var(--glow-mag)}
+    50%{box-shadow:0 0 30px #ff00aaaa,0 0 80px #ff00aa55}
+  }
+
   /* SELECTOR */
   .selector-wrap { margin-bottom:2rem; }
   .select-container { position:relative; display:inline-block; width:100%; max-width:520px; }
@@ -194,10 +240,24 @@ for(let i=0;i<18;i++){
 
   <div class="line-deco"><div class="ldi"></div></div>
 
-  <!-- HOY PANEL -->
-  <section style="margin-bottom:2.5rem;">
-    <div class="section-label">// DESCANSAN HOY //</div>
+  <!-- DÍA SELECTOR BUTTONS -->
+  <section style="margin-bottom:1.5rem;">
+    <div class="section-label">// CONSULTA DE DESCANSOS POR DÍA //</div>
+    <div class="day-btns">
+      <button class="day-btn active" onclick="setDay(0,this)"><span>◈ HOY</span></button>
+      <button class="day-btn" onclick="setDay(1,this)"><span>◈ MAÑANA</span></button>
+      <button class="day-btn" onclick="setDay(2,this)"><span>◈ PASADO MAÑANA</span></button>
+    </div>
+  </section>
+
+  <!-- DESCANSAN PANEL -->
+  <section style="margin-bottom:1.5rem;">
     <div class="hoy-panel" id="hoyPanel"></div>
+  </section>
+
+  <!-- TRABAJANDO PANEL -->
+  <section style="margin-bottom:3rem;">
+    <div class="work-panel" id="workPanel"></div>
   </section>
 
   <!-- SELECTOR -->
@@ -356,47 +416,79 @@ function updatePanel(){
   renderTable(name);
 }
 
-// WHO RESTS TODAY
-function renderHoy(){
-  const today=new Date();
-  // Only show for March 2026
-  const isMarzo=(today.getFullYear()===2026&&today.getMonth()===2);
-  const dayNum=today.getDate();
-  const dayNames=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-  const monthNames=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-  const dateStr=`${dayNames[today.getDay()]}, ${dayNum} de ${monthNames[today.getMonth()]} de ${today.getFullYear()}`;
+const dayNames=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+const monthNames=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const btnLabels=['HOY','MAÑANA','PASADO MAÑANA'];
 
-  const hoy=document.getElementById('hoyPanel');
-  let resting=[];
-
-  if(isMarzo){
-    weeks.forEach(week=>{
-      week.nums.forEach((num,di)=>{
-        if(num===dayNum){
-          week.workers.forEach(row=>{
-            const n=row[di];
-            if(n&&n.trim()&&!resting.includes(n.trim())) resting.push(n.trim());
-          });
-        }
-      });
-    });
-  }
-
-  let html=`<div class="hoy-date">HOY — ${dateStr.toUpperCase()}</div>`;
-  html+=`<div class="hoy-title">⬡ DESCANSAN HOY ⬡</div>`;
-  html+=`<div class="hoy-names">`;
-  if(resting.length){
-    resting.forEach(n=>{ html+=`<div class="hoy-badge">${n}</div>`; });
-  } else if(!isMarzo){
-    html+=`<span class="hoy-none">EL CUADRANTE CORRESPONDE A MARZO 2026 — SIN DATOS PARA HOY</span>`;
-  } else {
-    html+=`<span class="hoy-none">NINGÚN OPERARIO DESCANSA HOY</span>`;
-  }
-  html+=`</div>`;
-  hoy.innerHTML=html;
+function getDatePlusDays(offset){
+  const d=new Date();
+  d.setDate(d.getDate()+offset);
+  return d;
 }
 
-renderHoy();
+function getRestingOnDate(date){
+  const isMarzo=(date.getFullYear()===2026&&date.getMonth()===2);
+  if(!isMarzo) return null; // not in range
+  const dayNum=date.getDate();
+  const resting=[];
+  weeks.forEach(week=>{
+    week.nums.forEach((num,di)=>{
+      if(num===dayNum){
+        week.workers.forEach(row=>{
+          const n=row[di];
+          if(n&&n.trim()&&!resting.includes(n.trim())) resting.push(n.trim());
+        });
+      }
+    });
+  });
+  return resting;
+}
+
+function setDay(offset, btn){
+  document.querySelectorAll('.day-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const date=getDatePlusDays(offset);
+  const label=btnLabels[offset];
+  const dateStr=`${dayNames[date.getDay()]} ${date.getDate()} DE ${monthNames[date.getMonth()].toUpperCase()} ${date.getFullYear()}`;
+  const resting=getRestingOnDate(date);
+  const allNames=[...allWorkers];
+
+  // DESCANSAN panel
+  const hoyEl=document.getElementById('hoyPanel');
+  let h=`<div class="hoy-date">${label} — ${dateStr}</div>`;
+  h+=`<div class="hoy-title">⬡ DESCANSAN ${label} ⬡</div>`;
+  h+=`<div class="hoy-names">`;
+  if(resting===null){
+    h+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE ES DE MARZO 2026</span>`;
+  } else if(resting.length){
+    resting.forEach(n=>{ h+=`<div class="hoy-badge">${n}</div>`; });
+  } else {
+    h+=`<span class="hoy-none">NINGÚN OPERARIO DESCANSA ESTE DÍA</span>`;
+  }
+  h+=`</div>`;
+  hoyEl.innerHTML=h;
+
+  // TRABAJANDO panel
+  const workEl=document.getElementById('workPanel');
+  let w=`<div class="hoy-date">${label} — ${dateStr}</div>`;
+  w+=`<div class="work-title">⬡ TRABAJANDO ${label} ⬡</div>`;
+  w+=`<div class="hoy-names">`;
+  if(resting===null){
+    w+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE ES DE MARZO 2026</span>`;
+  } else {
+    const working=allNames.filter(n=>!resting.includes(n));
+    if(working.length){
+      working.forEach(n=>{ w+=`<div class="work-badge">${n}</div>`; });
+    } else {
+      w+=`<span class="hoy-none">TODOS LOS OPERARIOS DESCANSAN ESTE DÍA</span>`;
+    }
+  }
+  w+=`</div>`;
+  workEl.innerHTML=w;
+}
+
+// Init with HOY
+setDay(0, document.querySelector('.day-btn.active'));
 
 function renderTable(hl){
   const wrap=document.getElementById('tableWrap');
