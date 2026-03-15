@@ -103,6 +103,34 @@
     0%,100%{box-shadow:var(--glow-cyan)}
     50%{box-shadow:0 0 30px #00f5ffaa,0 0 80px #00f5ff55}
   }
+  .hoy-badge.amarillo {
+    background:#ffe600;border-color:#e6c800;color:#1a1200;
+    box-shadow:0 0 16px #ffe60088,0 0 40px #ffe60033;
+    animation:pulseAmarillo 2s ease-in-out infinite;
+  }
+  @keyframes pulseAmarillo {
+    0%,100%{box-shadow:0 0 16px #ffe60088,0 0 40px #ffe60033}
+    50%{box-shadow:0 0 30px #ffe600cc,0 0 70px #ffe60066}
+  }
+  .hoy-badge.verde {
+    background:#00e676;border-color:#00b85a;color:#001a0d;
+    box-shadow:0 0 16px #00e67688,0 0 40px #00e67633;
+    animation:pulseVerde 2s ease-in-out infinite;
+  }
+  @keyframes pulseVerde {
+    0%,100%{box-shadow:0 0 16px #00e67688,0 0 40px #00e67633}
+    50%{box-shadow:0 0 30px #00e676cc,0 0 70px #00e67666}
+  }
+  .work-badge.amarillo {
+    background:#ffe600;border-color:#e6c800;color:#1a1200;
+    box-shadow:0 0 16px #ffe60088,0 0 40px #ffe60033;
+    animation:pulseAmarillo 2s ease-in-out infinite;
+  }
+  .work-badge.verde {
+    background:#00e676;border-color:#00b85a;color:#001a0d;
+    box-shadow:0 0 16px #00e67688,0 0 40px #00e67633;
+    animation:pulseVerde 2s ease-in-out infinite;
+  }
   .hoy-none { font-size:.75rem;color:rgba(0,245,255,.4);letter-spacing:.2em; }
 
   /* DAY BUTTONS */
@@ -453,6 +481,13 @@ function setDay(offset, btn){
   const resting=getRestingOnDate(date);
   const allNames=[...allWorkers];
 
+  const amarillos=new Set(['JAVIER MENENDEZ','VICTORIANO ANCA','CIPRIAN BAESU','LUIS FCO. ALONSO','EMILIO MARCOS','BENITO ROMANO','BAMBA']);
+  const verdes=new Set(['RUBEN DARIO','ALFONSO TORRES']);
+
+  function badgeClass(n){ if(amarillos.has(n))return'amarillo'; if(verdes.has(n))return'verde'; return''; }
+  function prefix(n){ return(amarillos.has(n)||verdes.has(n))?'🧹 ':''; }
+  function makeBadge(baseClass,n){ const c=badgeClass(n); return`<div class="${baseClass}${c?' '+c:''}">${prefix(n)}${n}</div>`; }
+
   // DESCANSAN panel
   const hoyEl=document.getElementById('hoyPanel');
   let h=`<div class="hoy-date">${label} — ${dateStr}</div>`;
@@ -461,7 +496,7 @@ function setDay(offset, btn){
   if(resting===null){
     h+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE ES DE MARZO 2026</span>`;
   } else if(resting.length){
-    resting.forEach(n=>{ h+=`<div class="hoy-badge">${n}</div>`; });
+    resting.forEach(n=>{ h+=makeBadge('hoy-badge',n); });
   } else {
     h+=`<span class="hoy-none">NINGÚN OPERARIO DESCANSA ESTE DÍA</span>`;
   }
@@ -478,7 +513,7 @@ function setDay(offset, btn){
   } else {
     const working=allNames.filter(n=>!resting.includes(n));
     if(working.length){
-      working.forEach(n=>{ w+=`<div class="work-badge">${n}</div>`; });
+      working.forEach(n=>{ w+=makeBadge('work-badge',n); });
     } else {
       w+=`<span class="hoy-none">TODOS LOS OPERARIOS DESCANSAN ESTE DÍA</span>`;
     }
