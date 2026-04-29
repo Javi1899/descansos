@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DESCANSOS — ABRIL 2026</title>
+<title>DESCANSOS — MAYO 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -78,9 +78,12 @@
 
   /* HOY PANEL */
   .hoy-panel {
-    border:2px solid var(--cyan); padding:2rem 2.5rem;
+    border:2px solid var(--cyan);
+    padding:2rem 2.5rem;
     background:radial-gradient(ellipse at center,rgba(0,245,255,.08),transparent 70%);
-    position:relative; box-shadow:var(--glow-cyan); text-align:center;
+    position:relative;
+    box-shadow:var(--glow-cyan);
+    text-align:center;
   }
   .hoy-panel::before { content:'';position:absolute;top:0;right:0;width:28px;height:28px;border-top:3px solid var(--magenta);border-right:3px solid var(--magenta); }
   .hoy-panel::after  { content:'';position:absolute;bottom:0;left:0;width:28px;height:28px;border-bottom:3px solid var(--magenta);border-left:3px solid var(--magenta); }
@@ -89,15 +92,18 @@
   .hoy-names { display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center; }
   .hoy-badge {
     font-family:'Orbitron',sans-serif;font-size:.8rem;font-weight:700;
-    padding:.6rem 1.4rem; border:2px solid var(--cyan);color:#fff;
-    background:rgba(0,245,255,.1); box-shadow:var(--glow-cyan); letter-spacing:.1em;
+    padding:.6rem 1.4rem;
+    border:2px solid var(--cyan);color:#fff;
+    background:rgba(0,245,255,.1);
+    box-shadow:var(--glow-cyan);
+    letter-spacing:.1em;
     animation:pulseBadge 2s ease-in-out infinite;
   }
   @keyframes pulseBadge {
     0%,100%{box-shadow:var(--glow-cyan)}
     50%{box-shadow:0 0 30px #00f5ffaa,0 0 80px #00f5ff55}
   }
-  .hoy-badge.amarillo,.work-badge.amarillo {
+  .hoy-badge.amarillo {
     background:#ffe600;border-color:#e6c800;color:#1a1200;
     box-shadow:0 0 16px #ffe60088,0 0 40px #ffe60033;
     animation:pulseAmarillo 2s ease-in-out infinite;
@@ -106,7 +112,7 @@
     0%,100%{box-shadow:0 0 16px #ffe60088,0 0 40px #ffe60033}
     50%{box-shadow:0 0 30px #ffe600cc,0 0 70px #ffe60066}
   }
-  .hoy-badge.verde,.work-badge.verde {
+  .hoy-badge.verde {
     background:#00e676;border-color:#00b85a;color:#001a0d;
     box-shadow:0 0 16px #00e67688,0 0 40px #00e67633;
     animation:pulseVerde 2s ease-in-out infinite;
@@ -114,6 +120,16 @@
   @keyframes pulseVerde {
     0%,100%{box-shadow:0 0 16px #00e67688,0 0 40px #00e67633}
     50%{box-shadow:0 0 30px #00e676cc,0 0 70px #00e67666}
+  }
+  .work-badge.amarillo {
+    background:#ffe600;border-color:#e6c800;color:#1a1200;
+    box-shadow:0 0 16px #ffe60088,0 0 40px #ffe60033;
+    animation:pulseAmarillo 2s ease-in-out infinite;
+  }
+  .work-badge.verde {
+    background:#00e676;border-color:#00b85a;color:#001a0d;
+    box-shadow:0 0 16px #00e67688,0 0 40px #00e67633;
+    animation:pulseVerde 2s ease-in-out infinite;
   }
   .hoy-none { font-size:.75rem;color:rgba(0,245,255,.4);letter-spacing:.2em; }
 
@@ -133,13 +149,19 @@
   .day-btn:hover::before,.day-btn.active::before { transform:scaleX(1); }
   .day-btn:hover span,.day-btn.active span { color:var(--dark); }
   .day-btn span { position:relative;z-index:1;transition:color .25s; }
-  .day-btn.active { border-color:var(--cyan); box-shadow:var(--glow-cyan); }
+  .day-btn.active {
+    border-color:var(--cyan);
+    box-shadow:var(--glow-cyan);
+  }
 
   /* WORK PANEL */
   .work-panel {
-    border:2px solid rgba(255,0,170,.4); padding:2rem 2.5rem;
+    border:2px solid rgba(255,0,170,.4);
+    padding:2rem 2.5rem;
     background:radial-gradient(ellipse at center,rgba(255,0,170,.06),transparent 70%);
-    position:relative; box-shadow:var(--glow-mag); text-align:center;
+    position:relative;
+    box-shadow:var(--glow-mag);
+    text-align:center;
   }
   .work-panel::before { content:'';position:absolute;top:0;right:0;width:28px;height:28px;border-top:3px solid var(--cyan);border-right:3px solid var(--cyan); }
   .work-panel::after  { content:'';position:absolute;bottom:0;left:0;width:28px;height:28px;border-bottom:3px solid var(--cyan);border-left:3px solid var(--cyan); }
@@ -148,7 +170,8 @@
     font-family:'Orbitron',sans-serif;font-size:.8rem;font-weight:700;
     padding:.6rem 1.4rem;display:inline-block;
     border:2px solid var(--magenta);color:#fff;
-    background:rgba(255,0,170,.1); box-shadow:var(--glow-mag);letter-spacing:.1em;
+    background:rgba(255,0,170,.1);
+    box-shadow:var(--glow-mag);letter-spacing:.1em;
     animation:pulseBadgeMag 2s ease-in-out infinite;
   }
   @keyframes pulseBadgeMag {
@@ -185,6 +208,7 @@
     font-family:'Orbitron',sans-serif;font-size:.62rem;padding:.3rem .7rem;
     border:1px solid var(--cyan);color:var(--cyan);box-shadow:0 0 8px rgba(0,245,255,.3);letter-spacing:.08em;
   }
+  .day-badge.work { border-color:rgba(255,0,170,.5);color:var(--magenta);box-shadow:0 0 8px rgba(255,0,170,.2); }
   .info-placeholder { font-size:.75rem;color:rgba(0,245,255,.3);letter-spacing:.12em;padding:1rem 0; }
 
   /* TABLE */
@@ -203,6 +227,7 @@
   td.hl { background:rgba(0,245,255,.12)!important;color:var(--cyan)!important;text-shadow:var(--glow-cyan);font-weight:bold; }
   td.week-note-cell { padding:0;border:none;background:transparent; }
   .wnote { font-size:.53rem;color:rgba(255,200,100,.7);border:1px solid rgba(255,200,100,.2);padding:.5rem .9rem;margin:.2rem 0 .5rem;background:rgba(255,200,100,.03);letter-spacing:.04em;line-height:1.7;text-align:left; }
+  .spacer { height:.6rem;border:none!important;background:transparent!important; }
 
   footer { border-top:1px solid rgba(0,245,255,.1);padding:2.5rem 0;text-align:center; }
   .footer-main { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:.25em;color:var(--cyan);text-shadow:var(--glow-cyan);margin-bottom:.8rem; }
@@ -235,10 +260,10 @@ for(let i=0;i<18;i++){
     <div class="top-bar">
       <span>SYS::CUADRANTE_LIMPIEZA_LLANES</span>
       <span id="clock">--:--:--</span>
-      <span>PROTOCOLO ACTIVO — ABRIL 2026</span>
+      <span>PROTOCOLO ACTIVO — MAYO 2026</span>
     </div>
     <h1>DESCANSOS</h1>
-    <p class="subtitle">Cuadrante de Descansos — Limpieza de Llanes — Abril 2026</p>
+    <p class="subtitle">Cuadrante de Descansos — Limpieza de Llanes — Mayo 2026</p>
   </header>
 
   <div class="line-deco"><div class="ldi"></div></div>
@@ -278,13 +303,13 @@ for(let i=0;i<18;i++){
   <section>
     <div class="section-label">// DÍAS DE DESCANSO DEL OPERARIO SELECCIONADO //</div>
     <div class="info-panel" id="infoPanel">
-      <p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO EN ABRIL 2026</p>
+      <p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO EN MAYO 2026</p>
     </div>
   </section>
 
   <!-- TABLE -->
   <section>
-    <div class="section-label">// CUADRANTE COMPLETO — ABRIL 2026 //</div>
+    <div class="section-label">// CUADRANTE COMPLETO — MAYO 2026 //</div>
     <div class="table-wrap" id="tableWrap"></div>
   </section>
 </div>
@@ -292,7 +317,7 @@ for(let i=0;i<18;i++){
 <footer>
   <div class="container">
     <div class="footer-main">ESTA WEB ES DE JAVI TJ</div>
-    <div class="footer-sub">SISTEMA DE GESTIÓN DE DESCANSOS — LIMPIEZA DE LLANES — ABRIL 2026</div>
+    <div class="footer-sub">SISTEMA DE GESTIÓN DE DESCANSOS — LIMPIEZA DE LLANES — MAYO 2026</div>
   </div>
 </footer>
 
@@ -306,83 +331,77 @@ function updateClock(){
 }
 setInterval(updateClock,1000);updateClock();
 
-// ============ DATOS CUADRANTE ABRIL 2026 ============
-// VICTORIANO ANCA: vacaciones todo el mes → no aparece en el cuadrante
-// JUAN L. MARTINEZ: vacaciones días 2-16 → no aparece en esos días
 const weeks=[
   {
-    dates:['LUN 30','MAR 31','MIÉ 01','JUE 02','VIE 03','SÁB 04','DOM 05'],
-    nums:[null,null,1,2,3,4,5],
+    dates:['LUN 27ABR','MAR 28ABR','MIÉ 29ABR','JUE 30ABR','VIE 01','SÁB 02','DOM 03'],
+    nums:[null,null,null,null,1,2,3],
     workers:[
-      ['','RUBEN DARIO','CIPRIAN BAESU','BENITO ROMANO','BENITO ROMANO','EMILIO MARCOS',''],
-      ['LUCIANO','CIPRIAN BAESU','JUAN PRIETO','JUAN PRIETO','JAVIER MENENDEZ','','LUCIANO'],
-      ['JUAN L. MARTINEZ','JESUS P. OLIVA','LUIS ALFREDO','','','JESUS P. OLIVA',''],
-      ['','','JUAN L. MARTINEZ','','','DANIEL LOPEZ','BAMBA'],
-      ['','','JAGOBA','','','','RUBEN DARIO'],
-      ['','','','','','','RUBEN GION'],
+      ['','','','','LUIS FCO. ALONSO','JAGOBA','EMILIO MARCOS'],
+      ['','','','','JUAN L. MARTINEZ','JESUS P. OLIVA','LUCIANO'],
+      ['','','','','','EMILIO MARCOS','JESUS P. OLIVA'],
+      ['','','','','','GERARDO','RUBEN GION'],
+      ['','','','','','','BENITO ROMANO'],
+      ['','','','','','','GERARDO'],
     ],
-    note:'JESUS DESCANSA SÁB 4 | CIPRIAN, BENITO Y EMILIO: 2 DESCANSOS | JAVIER Y VICTORIANO: 1 DESCANSO'
+    note:'S1 · JESUS descansa SÁB 2 → LUIS FCO.: VIE · EMILIO: SÁB+DOM · LUCIANO, JESUS P. OLIVA: 1 desc | GERARDO: LUNES PUEBLOS, MARTES BARRER EN POSADA | MIERCOLES, JUEVES Y VIERNES CONTENEDORES | DANIEL: EN LA BRIGADA LUNES, MARTES Y MIERCOLES | JAGOBA: MARTES PUEBLOS, JUEVES BARRIDO RECORRIDO DE VITI | ANGEL AMIEVA: DANDO DESCANSO A JUAN MIERCOLES JUEVES | BENITO: JUEVES CON LA BRIGADA. VIERNES, SABADO EN POSADA'
   },
   {
-    dates:['LUN 06','MAR 07','MIÉ 08','JUE 09','VIE 10','SÁB 11','DOM 12'],
-    nums:[6,7,8,9,10,11,12],
+    dates:['LUN 04','MAR 05','MIÉ 06','JUE 07','VIE 08','SÁB 09','DOM 10'],
+    nums:[4,5,6,7,8,9,10],
     workers:[
-      ['JAVIER MENENDEZ','JAVIER MENENDEZ','CIPRIAN BAESU','EMILIO MARCOS','BAMBA','LUIS FCO. ALONSO','BAMBA'],
-      ['DANIEL LOPEZ','','JUAN PRIETO','RUBEN GION','JAGOBA','BENITO ROMANO','BENITO ROMANO'],
-      ['','','LUIS ALFREDO','LUIS ALFREDO','LUIS FCO. ALONSO','JAGOBA','LUCIANO'],
-      ['','','GERARDO TUERO','','','','JESUS P. OLIVA'],
-      ['','','','DANIEL LOPEZ','','','RUBEN DARIO'],
+      ['JAVIER MENENDEZ','JAVIER MENENDEZ','CIPRIAN BAESU','EMILIO MARCOS','JAGOBA','JAGOBA','ALFONSO TORRES'],
+      ['','LUIS ALFREDO','JUAN PRIETO','JUAN L. MARTINEZ','LUIS FCO. ALONSO','VICTORIANO ANCA','BENITO ROMANO'],
+      ['','','LUIS ALFREDO','','','LUIS FCO. ALONSO','LUCIANO'],
+      ['','','','','','RUBEN GION','JESUS P. OLIVA'],
       ['','','','','','','RUBEN GION'],
+      ['','','','','','','VICTORIANO ANCA'],
+      ['','','','','','','GERARDO'],
     ],
-    note:'JESUS NO DESCANSA SÁB 11 | LUIS FCO. + BENITO EN SÁB | BAMBA: VIE + DOM | JAVIER Y LUIS FCO.: 2 DESCANSOS'
+    note:'S2 · JESUS NO descansa SÁB 9 → LUIS FCO.: VIE+SÁB · JAVIER: LUN+MAR · LUIS ALFREDO, RUBEN GION, BENITO: 2 desc | GERARDO: LUNES PUEBLOS, MARTES, MIERCOLES Y JUEVES | CONTENEDORES, VIERNES REPASO, SABADO BARRER EN NUEVA | JAGOBA: PUEBLOS, MARTES, MIERCOLES Y JUEVES | JESUS: SABADO REPASO | LUIS FCO. ALONSO DOMINGO JORNADA PARTIDA'
   },
   {
-    dates:['LUN 13','MAR 14','MIÉ 15','JUE 16','VIE 17','SÁB 18','DOM 19'],
-    nums:[13,14,15,16,17,18,19],
+    dates:['LUN 11','MAR 12','MIÉ 13','JUE 14','VIE 15','SÁB 16','DOM 17'],
+    nums:[11,12,13,14,15,16,17],
     workers:[
-      ['LUCIANO','RUBEN DARIO','JUAN PRIETO','JUAN PRIETO','LUIS FCO. ALONSO','JAGOBA','BAMBA'],
-      ['CIPRIAN BAESU','JUAN L. MARTINEZ','LUIS ALFREDO','JAVIER MENENDEZ','','JESUS P. OLIVA','EMILIO MARCOS'],
-      ['','CIPRIAN BAESU','GERARDO TUERO','','','EMILIO MARCOS','LUCIANO'],
-      ['','','BENITO ROMANO','','','','JESUS P. OLIVA'],
-      ['','','','','','','RUBEN DARIO'],
-      ['','','','','','','RUBEN GION'],
-      ['','','','','','DANIEL LOPEZ','DANIEL LOPEZ'],
+      ['LUCIANO','BENITO ROMANO','EMILIO MARCOS','VICTORIANO ANCA','LUIS FCO. ALONSO','JAGOBA','ALFONSO TORRES'],
+      ['CIPRIAN BAESU','CIPRIAN BAESU','JUAN L. MARTINEZ','EMILIO MARCOS','LUIS ALFREDO','JESUS P. OLIVA','LUCIANO'],
+      ['','','','JUAN L. MARTINEZ','JUAN PRIETO','ALFONSO TORRES','JESUS P. OLIVA'],
+      ['','','','JUAN PRIETO','','GERARDO','RUBEN GION'],
+      ['','','','','','','JAVIER MENENDEZ'],
+      ['','','','','','','GERARDO'],
     ],
-    note:'JESUS DESCANSA SÁB 18 | LUIS FCO.: JUE + VIE | CIPRIAN: LUN + SÁB | CIPRIAN Y EMILIO: 2 DESCANSOS'
+    note:'S3 · JESUS descansa SÁB 16 → LUIS FCO.: JUE+VIE · LUCIANO: LUN+DOM · JUAN PRIETO, JUAN L.MARTINEZ: 2 desc | GERARDO: LUNES PUEBLOS, MARTES BARRIDO EN POSADA | MIERCOLES, JUEVES Y VIERNES CONTENEDORES | JAGOBA: MARTES Y MIERCOLES, JUEVES RECORRIDO DE EMILIO | RESTO LIMPIA FACHADAS | LUIS FCO. ALONSO DOMINGO JORNADA PARTIDA'
   },
   {
-    dates:['LUN 20','MAR 21','MIÉ 22','JUE 23','VIE 24','SÁB 25','DOM 26'],
-    nums:[20,21,22,23,24,25,26],
+    dates:['LUN 18','MAR 19','MIÉ 20','JUE 21','VIE 22','SÁB 23','DOM 24'],
+    nums:[18,19,20,21,22,23,24],
     workers:[
-      ['BENITO ROMANO','BENITO ROMANO','CIPRIAN BAESU','EMILIO MARCOS','BAMBA','LUIS FCO. ALONSO','BAMBA'],
-      ['','','JUAN PRIETO','RUBEN GION','JAGOBA','JAVIER MENENDEZ','JAVIER MENENDEZ'],
-      ['','LUIS ALFREDO','LUIS ALFREDO','','LUIS FCO. ALONSO','JAGOBA','LUCIANO'],
-      ['','','','DANIEL LOPEZ','','JUAN L. MARTINEZ','JESUS P. OLIVA'],
-      ['','','','','','','RUBEN DARIO'],
+      ['VICTORIANO ANCA','VICTORIANO ANCA','CIPRIAN BAESU','EMILIO MARCOS','JAGOBA','JAGOBA','ALFONSO TORRES'],
+      ['','LUIS ALFREDO','LUIS ALFREDO','JUAN L. MARTINEZ','LUIS FCO. ALONSO','LUIS FCO. ALONSO','LUCIANO'],
+      ['','','ANGEL AMIEVA','','JAVIER MENENDEZ','JAVIER MENENDEZ','JESUS P. OLIVA'],
+      ['','','','','','RUBEN GION','RUBEN DARIO'],
       ['','','','','','','RUBEN GION'],
-      ['','','','','','GERARDO TUERO','GERARDO TUERO'],
+      ['','','','','','','DANIEL LOPEZ'],
+      ['','','','','','','GERARDO'],
     ],
-    note:'JESUS NO DESCANSA SÁB 25 | LUIS FCO. + VICTORIANO EN SÁB | BAMBA: VIE + DOM | JAVIER, LUIS FCO. Y BENITO: 2 DESCANSOS'
+    note:'S4 · JESUS NO descansa SÁB 23 → LUIS FCO.: VIE+SÁB · BENITO: LUN+MAR · RUBEN GION, LUIS ALFREDO: 2 desc | GERARDO: LUNES PUEBLOS, MARTES, MIERCOLES Y JUEVES | CONTENEDORES, VIERNES REPASO, SABADO BARRER EN NUEVA | JAGOBA: MARTES, MIERCOLES PUEBLOS, RESTO LIMPIA FACHADAS | JESUS: REPASO | ANGEL AMIEVA: HABLAR DEL DESCANSO | LUIS FCO. ALONSO DOMINGO JORNADA COMPLETA'
   },
   {
-    dates:['LUN 27','MAR 28','MIÉ 29','JUE 30','VIE 01','SÁB 02','DOM 03'],
-    nums:[27,28,29,30,null,null,null],
+    dates:['LUN 25','MAR 26','MIÉ 27','JUE 28','VIE 29','SÁB 30','DOM 31'],
+    nums:[25,26,27,28,29,30,31],
     workers:[
-      ['LUCIANO','RUBEN DARIO','JUAN PRIETO','JUAN PRIETO','LUIS FCO. ALONSO','JAGOBA','BAMBA'],
-      ['CIPRIAN BAESU','','','JAVIER MENENDEZ','LUIS ALFREDO','JESUS P. OLIVA','EMILIO MARCOS'],
-      ['','CIPRIAN BAESU','JUAN L. MARTINEZ','JUAN L. MARTINEZ','','EMILIO MARCOS','LUCIANO'],
-      ['','','BENITO ROMANO','','','','JESUS P. OLIVA'],
-      ['','','','','','','RUBEN DARIO'],
-      ['','','','','','','RUBEN GION'],
-      ['','','','','','DANIEL LOPEZ','DANIEL LOPEZ'],
-      ['','','','','','','GERARDO TUERO'],
+      ['LUCIANO','RUBEN DARIO','CIPRIAN BAESU','JUAN L. MARTINEZ','EMILIO MARCOS','JAGOBA','ALFONSO TORRES'],
+      ['VICTORIANO ANCA','ALFONSO TORRES','JUAN L. MARTINEZ','EMILIO MARCOS','JAGOBA','JESUS P. OLIVA','LUCIANO'],
+      ['','','ANGEL AMIEVA','CIPRIAN BAESU','LUIS ALFREDO','LUIS FCO. ALONSO','JESUS P. OLIVA'],
+      ['','','','ANGEL AMIEVA','JAVIER MENENDEZ','DANIEL LOPEZ','RUBEN DARIO'],
+      ['','','','','','GERARDO','RUBEN GION'],
+      ['','','','','','','DANIEL LOPEZ'],
+      ['','','','','','','GERARDO'],
     ],
-    note:'JESUS DESCANSA SÁB 2-MAY | LUIS FCO.: JUE + VIE | CIPRIAN: LUN + SÁB | CIPRIAN Y EMILIO: 2 DESCANSOS'
-  },
+    note:'S5 · JESUS descansa SÁB 30 → LUIS FCO.: JUE+VIE · LUCIANO: LUN+DOM · RUBEN DARIO, JUAN L.MARTINEZ: 2 desc | GERARDO: LUNES PUEBLOS, MARTES BARRER EN POSADA | MIERCOLES, JUEVES Y VIERNES CONTENEDORES | JAGOBA: JUEVES Y VIERNES BARRER RECORRIDO DE EMILIO | PUEBLOS MARTES Y MIERCOLES, RESTO LIMPIA | JAVIER: MIERCOLES RECORRIDO DE CIPRIAN, SABADO REPASO | ANGEL AMIEVA: HABLAR DEL DESCANSO | BENITO: 1ª QUINCENA EN POSADA BARRIENDO 2ª QUINCENA EN LA BRIGADA | LUIS FCO. ALONSO DOMINGO JORNADA PARTIDA'
+  }
 ];
 
-// ============ COLORES ============
-// Mismo esquema que marzo, añadidos RUBEN GION y GERARDO TUERO sin color especial
 const allWorkers=new Set();
 weeks.forEach(w=>w.workers.forEach(row=>row.forEach(n=>{if(n.trim())allWorkers.add(n.trim())})));
 const sorted=[...allWorkers].sort();
@@ -392,6 +411,7 @@ sorted.forEach(name=>{
   const o=document.createElement('option');o.value=name;o.textContent=name;sel.appendChild(o);
 });
 
+// Days in the cuadrante ARE rest days
 function getRestDays(name){
   const days=[];
   weeks.forEach(week=>{
@@ -403,16 +423,23 @@ function getRestDays(name){
   return days;
 }
 
+function getWorkDays(name){
+  const restNums=getRestDays(name).map(d=>d.num).filter(Boolean);
+  const allMar=Array.from({length:31},(_,i)=>i+1);
+  return allMar.filter(d=>!restNums.includes(d));
+}
+
 function updatePanel(){
   const name=sel.value;
   const panel=document.getElementById('infoPanel');
   if(!name){
-    panel.innerHTML='<p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO EN ABRIL 2026</p>';
+    panel.innerHTML='<p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO EN MAYO 2026</p>';
     renderTable('');return;
   }
   const restDays=getRestDays(name);
+
   let html=`<div class="info-name">${name}</div>`;
-  html+=`<div class="info-intro">// DÍAS DE DESCANSO EN ABRIL 2026 (${restDays.length} días en el cuadrante):</div><div class="info-days">`;
+  html+=`<div class="info-intro">// DÍAS DE DESCANSO EN MAYO 2026 (${restDays.length} días en el cuadrante):</div><div class="info-days">`;
   restDays.forEach(d=>{ html+=`<span class="day-badge">${d.date}</span>`; });
   if(!restDays.length) html+=`<span style="font-size:.7rem;color:rgba(200,220,255,.4)">SIN DESCANSOS EN EL CUADRANTE</span>`;
   html+=`</div>`;
@@ -420,25 +447,19 @@ function updatePanel(){
   renderTable(name);
 }
 
-// ============ HOY / MAÑANA / PASADO MAÑANA ============
 const dayNames=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
 const monthNames=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const btnLabels=['HOY','MAÑANA','PASADO MAÑANA'];
 
-const amarillos=new Set(['JAVIER MENENDEZ','VICTORIANO ANCA','CIPRIAN BAESU','LUIS FCO. ALONSO','EMILIO MARCOS','BENITO ROMANO','BAMBA']);
-const verdes=new Set(['RUBEN DARIO','ALFONSO TORRES']);
-
-function badgeClass(n){ if(amarillos.has(n))return'amarillo'; if(verdes.has(n))return'verde'; return''; }
-function prefix(n){ return(amarillos.has(n)||verdes.has(n))?'🧹 ':''; }
-function makeBadge(base,n){ const c=badgeClass(n); return`<div class="${base}${c?' '+c:''}">${prefix(n)}${n}</div>`; }
-
 function getDatePlusDays(offset){
-  const d=new Date(); d.setDate(d.getDate()+offset); return d;
+  const d=new Date();
+  d.setDate(d.getDate()+offset);
+  return d;
 }
 
 function getRestingOnDate(date){
-  const isAbril=(date.getFullYear()===2026&&date.getMonth()===3);
-  if(!isAbril) return null;
+  const isMarzo=(date.getFullYear()===2026&&date.getMonth()===4);
+  if(!isMarzo) return null; // not in range
   const dayNum=date.getDate();
   const resting=[];
   weeks.forEach(week=>{
@@ -454,7 +475,7 @@ function getRestingOnDate(date){
   return resting;
 }
 
-function setDay(offset,btn){
+function setDay(offset, btn){
   document.querySelectorAll('.day-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   const date=getDatePlusDays(offset);
@@ -463,11 +484,20 @@ function setDay(offset,btn){
   const resting=getRestingOnDate(date);
   const allNames=[...allWorkers];
 
+  const amarillos=new Set(['JAVIER MENENDEZ','VICTORIANO ANCA','CIPRIAN BAESU','LUIS FCO. ALONSO','EMILIO MARCOS']);
+  const verdes=new Set(['RUBEN DARIO','ALFONSO TORRES','GERARDO','RUBEN GION','BENITO ROMANO']);
+
+  function badgeClass(n){ if(amarillos.has(n))return'amarillo'; if(verdes.has(n))return'verde'; return''; }
+  function prefix(n){ return(amarillos.has(n)||verdes.has(n))?'🧹 ':''; }
+  function makeBadge(baseClass,n){ const c=badgeClass(n); return`<div class="${baseClass}${c?' '+c:''}">${prefix(n)}${n}</div>`; }
+
+  // DESCANSAN panel
   const hoyEl=document.getElementById('hoyPanel');
   let h=`<div class="hoy-date">${label} — ${dateStr}</div>`;
-  h+=`<div class="hoy-title">⬡ DESCANSAN ${label} ⬡</div><div class="hoy-names">`;
+  h+=`<div class="hoy-title">⬡ DESCANSAN ${label} ⬡</div>`;
+  h+=`<div class="hoy-names">`;
   if(resting===null){
-    h+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE ES DE ABRIL 2026</span>`;
+    h+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE ES DE MAYO 2026</span>`;
   } else if(resting.length){
     resting.forEach(n=>{ h+=makeBadge('hoy-badge',n); });
   } else {
@@ -476,11 +506,13 @@ function setDay(offset,btn){
   h+=`</div>`;
   hoyEl.innerHTML=h;
 
+  // TRABAJANDO panel
   const workEl=document.getElementById('workPanel');
   let w=`<div class="hoy-date">${label} — ${dateStr}</div>`;
-  w+=`<div class="work-title">⬡ TRABAJANDO ${label} ⬡</div><div class="hoy-names">`;
+  w+=`<div class="work-title">⬡ TRABAJANDO ${label} ⬡</div>`;
+  w+=`<div class="hoy-names">`;
   if(resting===null){
-    w+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE ES DE ABRIL 2026</span>`;
+    w+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE ES DE MAYO 2026</span>`;
   } else {
     const working=allNames.filter(n=>!resting.includes(n));
     if(working.length){
@@ -493,9 +525,9 @@ function setDay(offset,btn){
   workEl.innerHTML=w;
 }
 
-setDay(0,document.querySelector('.day-btn.active'));
+// Init with HOY
+setDay(0, document.querySelector('.day-btn.active'));
 
-// ============ TABLA ============
 function renderTable(hl){
   const wrap=document.getElementById('tableWrap');
   const days=['LUNES','MARTES','MIÉRCOLES','JUEVES','VIERNES','SÁBADO','DOMINGO'];
@@ -504,22 +536,26 @@ function renderTable(hl){
   html+='</tr></thead><tbody>';
 
   weeks.forEach((week,wi)=>{
+    // Date row
     html+=`<tr><td style="color:var(--magenta);font-size:.5rem;">SEM ${wi+1}</td>`;
     week.dates.forEach(d=>html+=`<td class="date-row">${d}</td>`);
     html+='</tr>';
 
-    week.workers.forEach(row=>{
+    // Worker rows
+    const maxR=week.workers.length;
+    for(let ri=0;ri<maxR;ri++){
       html+='<tr><td></td>';
       for(let di=0;di<7;di++){
-        const name=row[di]||'';
+        const name=week.workers[ri][di]||'';
         const isHl=hl&&name===hl;
         html+=`<td${isHl?' class="hl"':''}>${name}</td>`;
       }
       html+='</tr>';
-    });
+    }
 
+    // Note
     if(week.note){
-      html+=`<tr><td colspan="8" class="week-note-cell"><div class="wnote">${week.note}</div></td></tr>`;
+      html+=`<tr class="spacer"><td colspan="8" class="week-note-cell"><div class="wnote">${week.note}</div></td></tr>`;
     }
     html+=`<tr><td colspan="8" style="height:.8rem;border:none;background:transparent;"></td></tr>`;
   });
