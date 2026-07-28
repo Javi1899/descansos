@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DESCANSOS — JULIO 2026</title>
+<title>DESCANSOS — AGOSTO 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -121,24 +121,6 @@
     0%,100%{box-shadow:0 0 16px #00e67688,0 0 40px #00e67633}
     50%{box-shadow:0 0 30px #00e676cc,0 0 70px #00e67666}
   }
-  .hoy-badge.azul {
-    background:#29b6f6;border-color:#0288d1;color:#001a24;
-    box-shadow:0 0 16px #29b6f688,0 0 40px #29b6f633;
-    animation:pulseAzul 2s ease-in-out infinite;
-  }
-  @keyframes pulseAzul {
-    0%,100%{box-shadow:0 0 16px #29b6f688,0 0 40px #29b6f633}
-    50%{box-shadow:0 0 30px #29b6f6cc,0 0 70px #29b6f666}
-  }
-  .hoy-badge.lavanda {
-    background:#c9a4ff;border-color:#9c6fe0;color:#1a0d33;
-    box-shadow:0 0 16px #c9a4ff88,0 0 40px #c9a4ff33;
-    animation:pulseLavanda 2s ease-in-out infinite;
-  }
-  @keyframes pulseLavanda {
-    0%,100%{box-shadow:0 0 16px #c9a4ff88,0 0 40px #c9a4ff33}
-    50%{box-shadow:0 0 30px #c9a4ffcc,0 0 70px #c9a4ff66}
-  }
   .work-badge.amarillo {
     background:#ffe600;border-color:#e6c800;color:#1a1200;
     box-shadow:0 0 16px #ffe60088,0 0 40px #ffe60033;
@@ -149,16 +131,21 @@
     box-shadow:0 0 16px #00e67688,0 0 40px #00e67633;
     animation:pulseVerde 2s ease-in-out infinite;
   }
-  .work-badge.azul {
-    background:#29b6f6;border-color:#0288d1;color:#001a24;
-    box-shadow:0 0 16px #29b6f688,0 0 40px #29b6f633;
-    animation:pulseAzul 2s ease-in-out infinite;
-  }
-  .work-badge.lavanda {
-    background:#c9a4ff;border-color:#9c6fe0;color:#1a0d33;
-    box-shadow:0 0 16px #c9a4ff88,0 0 40px #c9a4ff33;
-    animation:pulseLavanda 2s ease-in-out infinite;
-  }
+  /* DORADO — JUAN PRIETO, MBAYE KAERE, IBRAHIMA DIA */
+  .hoy-badge.dorado,.work-badge.dorado{background:#cc9900;border-color:#996600;color:#000;}
+  /* AZUL ELÉCTRICO — ASIER ANDER RIVERO, GERARDO, JESUS P. OLIVA, JUAN MANUEL VEGA */
+  .hoy-badge.azul,.work-badge.azul{background:#00b0f0;border-color:#0080c0;color:#000;}
+  /* CIAN — JAGOBA, ALVARO SOBRINO, BAMBA NDIAYE, LUIS ALFREDO */
+  .hoy-badge.cian,.work-badge.cian{background:#66ffff;border-color:#00cccc;color:#000;}
+  /* VERDE — JOSE LUIS NUÑEZ, RUBEN GION, RUBEN DARIO, ALFREDO MANUEL SOBRINO */
+  .hoy-badge.verde,.work-badge.verde{background:#00ff00;border-color:#00b800;color:#000;box-shadow:0 0 16px #00ff0088,0 0 40px #00ff0033;animation:pulseVerde 2s ease-in-out infinite;}
+  /* ROSA — LUCIANO */
+  .hoy-badge.rosa,.work-badge.rosa{background:#ffccff;border-color:#cc88cc;color:#000;}
+  /* ROJO — MANUEL FERNANDEZ TRESPALACIOS */
+  .hoy-badge.rojo,.work-badge.rojo{background:#ff0000;border-color:#cc0000;color:#fff;}
+  /* AMARILLO — ALFONSO TORRES, MARCOS PEREIRA, CIPRIAN BAESU, ISAIAS CEBALLOS, CARLOS RODRIGUEZ, FELIX GARCIA, EMILIO MARCOS, JAVIER MENENDEZ */
+  .hoy-badge.amarillo,.work-badge.amarillo{background:#ffff00;border-color:#cccc00;color:#000;box-shadow:0 0 16px #ffff0088,0 0 40px #ffff0033;animation:pulseAmarillo 2s ease-in-out infinite;}
+  @keyframes pulseAmarillo{0%,100%{box-shadow:0 0 16px #ffff0088,0 0 40px #ffff0033}50%{box-shadow:0 0 30px #ffff00cc,0 0 70px #ffff0066}}
   .hoy-none { font-size:.75rem;color:rgba(0,245,255,.4);letter-spacing:.2em; }
 
   /* DAY BUTTONS */
@@ -288,10 +275,10 @@ for(let i=0;i<18;i++){
     <div class="top-bar">
       <span>SYS::CUADRANTE_LIMPIEZA_LLANES</span>
       <span id="clock">--:--:--</span>
-      <span>PROTOCOLO ACTIVO — JULIO 2026</span>
+      <span>PROTOCOLO ACTIVO — AGOSTO 2026</span>
     </div>
     <h1>DESCANSOS</h1>
-    <p class="subtitle">Cuadrante de Descansos — Limpieza de Llanes — Julio 2026</p>
+    <p class="subtitle">Cuadrante de Descansos — Limpieza de Llanes — Agosto 2026</p>
   </header>
 
   <div class="line-deco"><div class="ldi"></div></div>
@@ -331,7 +318,7 @@ for(let i=0;i<18;i++){
   <section>
     <div class="section-label">// DÍAS DE DESCANSO DEL OPERARIO SELECCIONADO //</div>
     <div class="info-panel" id="infoPanel">
-      <p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO EN JULIO 2026</p>
+      <p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO (27 JUL — 6 SEP 2026)</p>
     </div>
   </section>
 
@@ -345,7 +332,7 @@ for(let i=0;i<18;i++){
 <footer>
   <div class="container">
     <div class="footer-main">ESTA WEB ES DE JAVI TJ</div>
-    <div class="footer-sub">SISTEMA DE GESTIÓN DE DESCANSOS — LIMPIEZA DE LLANES — JULIO 2026</div>
+    <div class="footer-sub">SISTEMA DE GESTIÓN DE DESCANSOS — LIMPIEZA DE LLANES — AGOSTO 2026</div>
   </div>
 </footer>
 
@@ -361,76 +348,94 @@ setInterval(updateClock,1000);updateClock();
 
 const weeks=[
   {
-    dates:['LUN 29','MAR 30','MIÉ 1','JUE 2','VIE 3','SÁB 4','DOM 5'],
-    nums:[null,null,1,2,3,4,5],
+    dates:['LUN (27)','MAR (28)','MIÉ (29)','JUE (30)','VIE (31)','SÁB 1','DOM 2'],
+    nums:[27,28,29,30,31,1,2],
+    months:[6,6,6,6,6,7,7],
     workers:[
-      ['CIPRIAN BAESU','LUIS ALFREDO','FELIX GARCIA','FELIX GARCIA','BAMBA NDIAYE','RUBEN GION','JESUS P. OLIVA'],
-      ['ALFONSO TORRES','EMILIO MARCOS','JUAN PRIETO','MBAYE KAERE','MARCOS PEREIRA','JAGOBA','RUBEN GION'],
-      ['','ALFREDO MANUEL SOBRINO SAMPEDRO','LUIS ALFREDO','JAVIER MENENDEZ','','','RUBEN DARIO'],
-      ['','JAGOBA','JAVIER MENENDEZ','LUCIANO','','','GERARDO'],
-      ['','CARLOS RODRIGUEZ MALDONADO','','ALFREDO MANUEL SOBRINO SAMPEDRO','','','ASIER ANDER RIVERO RODRIGUEZ'],
-      ['','ALVARO SOBRINO GUTIERREZ','','JUAN MANUEL VEGA GOMEZ','','','ISAIAS CEBALLO PIEDRA'],
-      ['','','','','','','JOSE LUIS NUÑEZ JUNCO'],
-    ],
-    note:''
-  },
-  {
-    dates:['LUN 06','MAR 07','MIÉ 08','JUE 09','VIE 10','SÁB 11','DOM 12'],
-    nums:[6,7,8,9,10,11,12],
-    workers:[
-      ['ALFONSO TORRES','MARCOS PEREIRA','JUAN PRIETO','JUAN PRIETO','LUCIANO','ASIER ANDER RIVERO RODRIGUEZ','ASIER ANDER RIVERO RODRIGUEZ'],
-      ['GERARDO','JAGOBA','CIPRIAN BAESU','CIPRIAN BAESU','MARCOS PEREIRA','ISAIAS CEBALLO PIEDRA','ISAIAS CEBALLO PIEDRA'],
-      ['ALVARO SOBRINO GUTIERREZ','ALVARO SOBRINO GUTIERREZ','CARLOS RODRIGUEZ MALDONADO','MBAYE KAERE','FELIX GARCIA','EMILIO MARCOS','JAVIER MENENDEZ'],
-      ['CARLOS RODRIGUEZ MALDONADO','LUCIANO','JOSE LUIS NUÑEZ JUNCO','EMILIO MARCOS','BAMBA NDIAYE','BAMBA NDIAYE','RUBEN GION'],
-      ['','ALFONSO TORRES','MBAYE KAERE','RUBEN DARIO','','JESUS P. OLIVA','JOSE LUIS NUÑEZ JUNCO'],
-      ['','RUBEN DARIO','JUAN MANUEL VEGA GOMEZ','JUAN MANUEL VEGA GOMEZ','','','ALFREDO MANUEL SOBRINO SAMPEDRO'],
-      ['','IBRAHIN DIA','LUIS ALFREDO','','','','GERARDO'],
+      ['ALFONSO TORRES','RUBEN DARIO','JUAN PRIETO','MBAYE KAERE','LUIS ALFREDO','RUBEN GION','RUBEN GION'],
+      ['LUIS ALFREDO','JAGOBA','IBRAHIMA DIA','ALVARO SOBRINO','FELIX GARCIA','JAVIER MENENDEZ','ASIER ANDER RIVERO'],
+      ['MANUEL FERNANDEZ TRESPALACIOS','IBRAHIMA DIA','CIPRIAN BAESU','LUCIANO','JAVIER MENENDEZ','BAMBA NDIAYE','ISAIAS CEBALLOS'],
+      ['','CARLOS RODRIGUEZ','EMILIO MARCOS','MARCOS PEREIRA','','ALFREDO MANUEL SOBRINO','JOSE LUIS NUÑEZ'],
+      ['','','JUAN MANUEL VEGA','FELIX GARCIA','','','GERARDO'],
+      ['','','JAGOBA','','','','ALFREDO MANUEL SOBRINO'],
       ['','','','','','','JESUS P. OLIVA'],
     ],
-    note:''
+    note:'SEMANA 1 — LUN 27 a VIE 31 son días de JULIO'
   },
   {
-    dates:['LUN 13','MAR 14','MIÉ 15','JUE 16','VIE 17','SÁB 18','DOM 19'],
-    nums:[13,14,15,16,17,18,19],
+    dates:['LUN 3','MAR 4','MIÉ 5','JUE 6','VIE 7','SÁB 8','DOM 9'],
+    nums:[3,4,5,6,7,8,9],
     workers:[
-      ['ALFONSO TORRES','LUIS ALFREDO','JUAN PRIETO','MBAYE KAERE','BAMBA NDIAYE','RUBEN GION','ASIER ANDER RIVERO RODRIGUEZ'],
-      ['JAGOBA','JAGOBA','LUIS ALFREDO','ALFREDO MANUEL SOBRINO SAMPEDRO','FELIX GARCIA','MARCOS PEREIRA','ISAIAS CEBALLO PIEDRA'],
-      ['ALVARO SOBRINO GUTIERREZ','CARLOS RODRIGUEZ MALDONADO','JUAN MANUEL VEGA GOMEZ','LUCIANO','JAVIER MENENDEZ','','EMILIO MARCOS'],
-      ['','ALFREDO MANUEL SOBRINO SAMPEDRO','IBRAHIN DIA','FELIX GARCIA','','','RUBEN GION'],
-      ['','IBRAHIN DIA','CIPRIAN BAESU','JAVIER MENENDEZ','','','GERARDO'],
-      ['','','JOSE LUIS NUÑEZ JUNCO','','','','JUAN PRIETO'],
-      ['','','','','','','JESUS P. OLIVA'],
-      ['','','','','','','RUBEN DARIO'],
+      ['GERARDO','IBRAHIMA DIA','JOSE LUIS NUÑEZ','JUAN MANUEL VEGA','FELIX GARCIA','JESUS P. OLIVA','GERARDO'],
+      ['ALFONSO TORRES','RUBEN DARIO','JUAN MANUEL VEGA','JUAN PRIETO','MARCOS PEREIRA','ASIER ANDER RIVERO','JESUS P. OLIVA'],
+      ['MARCOS PEREIRA','ALFONSO TORRES','JUAN PRIETO','MBAYE KAERE','BAMBA NDIAYE','ISAIAS CEBALLOS','ASIER ANDER RIVERO'],
+      ['ALVARO SOBRINO','CARLOS RODRIGUEZ','MBAYE KAERE','CIPRIAN BAESU','LUCIANO','EMILIO MARCOS','ISAIAS CEBALLOS'],
+      ['MANUEL FERNANDEZ TRESPALACIOS','ALVARO SOBRINO','CARLOS RODRIGUEZ','EMILIO MARCOS','','BAMBA NDIAYE','JOSE LUIS NUÑEZ'],
+      ['','MANUEL FERNANDEZ TRESPALACIOS','CIPRIAN BAESU','JAGOBA','','LUCIANO','RUBEN GION'],
+      ['','','LUIS ALFREDO','','','ALFREDO MANUEL SOBRINO','RUBEN DARIO'],
+      ['','','','','','','JAVIER MENENDEZ'],
     ],
-    note:''
+    note:'SEMANA 2'
   },
   {
-    dates:['LUN 20','MAR 21','MIÉ 22','JUE 23','VIE 24','SÁB 25','DOM 26'],
-    nums:[20,21,22,23,24,25,26],
+    dates:['LUN 10','MAR 11','MIÉ 12','JUE 13','VIE 14','SÁB 15','DOM 16'],
+    nums:[10,11,12,13,14,15,16],
     workers:[
-      ['JUAN PRIETO','LUCIANO','JOSE LUIS NUÑEZ JUNCO','MBAYE KAERE','ALVARO SOBRINO GUTIERREZ','ASIER ANDER RIVERO RODRIGUEZ','ASIER ANDER RIVERO RODRIGUEZ'],
-      ['GERARDO','JAGOBA','MBAYE KAERE','ALFONSO TORRES','FELIX GARCIA','ISAIAS CEBALLO PIEDRA','ISAIAS CEBALLO PIEDRA'],
-      ['ALVARO SOBRINO GUTIERREZ','BAMBA NDIAYE','RUBEN DARIO','CARLOS RODRIGUEZ MALDONADO','LUIS ALFREDO','BAMBA NDIAYE','RUBEN GION'],
-      ['ALFONSO TORRES','JUAN MANUEL VEGA GOMEZ','JAVIER MENENDEZ','','LUCIANO','JESUS P. OLIVA','JOSE LUIS NUÑEZ JUNCO'],
-      ['RUBEN DARIO','ALFREDO MANUEL SOBRINO SAMPEDRO','CARLOS RODRIGUEZ MALDONADO','','EMILIO MARCOS','CIPRIAN BAESU','GERARDO'],
-      ['JUAN MANUEL VEGA GOMEZ','IBRAHIN DIA','','','','','JESUS P. OLIVA'],
-      ['MARCOS PEREIRA','EMILIO MARCOS','','','','','MARCOS PEREIRA'],
+      ['ALFONSO TORRES','IBRAHIMA DIA','JUAN PRIETO','JUAN MANUEL VEGA','MARCOS PEREIRA','RUBEN GION','GERARDO'],
+      ['CIPRIAN BAESU','ALFREDO MANUEL SOBRINO','IBRAHIMA DIA','MBAYE KAERE','BAMBA NDIAYE','JAGOBA','JESUS P. OLIVA'],
+      ['ALVARO SOBRINO','CARLOS RODRIGUEZ','FELIX GARCIA','FELIX GARCIA','','EMILIO MARCOS','ASIER ANDER RIVERO'],
+      ['','JAGOBA','JAVIER MENENDEZ','JAVIER MENENDEZ','','RUBEN DARIO','ISAIAS CEBALLOS'],
+      ['','MANUEL FERNANDEZ TRESPALACIOS','LUIS ALFREDO','LUCIANO','','','JOSE LUIS NUÑEZ'],
+      ['','','LUIS ALFREDO','','','','RUBEN GION'],
+      ['','','','','','','ALFREDO MANUEL SOBRINO'],
     ],
-    note:''
+    note:'SEMANA 3'
   },
   {
-    dates:['LUN 27','MAR 28','MIÉ 29','JUE 30','VIE 31','SÁB 1','DOM 2'],
-    nums:[27,28,29,30,31,null,null],
+    dates:['LUN 17','MAR 18','MIÉ 19','JUE 20','VIE 21','SÁB 22','DOM 23'],
+    nums:[17,18,19,20,21,22,23],
     workers:[
-      ['ALFONSO TORRES','RUBEN DARIO','JUAN PRIETO','MBAYE KAERE','BAMBA NDIAYE','RUBEN GION','ASIER ANDER RIVERO RODRIGUEZ'],
-      ['FELIX GARCIA','JAGOBA','IBRAHIN DIA','ALFREDO MANUEL SOBRINO SAMPEDRO','FELIX GARCIA','MARCOS PEREIRA','ISAIAS CEBALLO PIEDRA'],
-      ['','ALVARO SOBRINO GUTIERREZ','CIPRIAN BAESU','LUIS ALFREDO','JAVIER MENENDEZ','JAGOBA','RUBEN GION'],
-      ['','IBRAHIN DIA','EMILIO MARCOS','LUCIANO','LUIS ALFREDO','','JOSE LUIS NUÑEZ JUNCO'],
-      ['','CARLOS RODRIGUEZ MALDONADO','JUAN MANUEL VEGA GOMEZ','JAVIER MENENDEZ','','','GERARDO'],
-      ['','','','','','','ALFREDO MANUEL SOBRINO SAMPEDRO'],
-      ['','','','','','','JESUS P. OLIVA'],
+      ['GERARDO','IBRAHIMA DIA','JOSE LUIS NUÑEZ','JUAN MANUEL VEGA','FELIX GARCIA','JESUS P. OLIVA','GERARDO'],
+      ['ALFONSO TORRES','RUBEN DARIO','JUAN MANUEL VEGA','JUAN PRIETO','MARCOS PEREIRA','ASIER ANDER RIVERO','JESUS P. OLIVA'],
+      ['MARCOS PEREIRA','ALFONSO TORRES','JUAN PRIETO','MBAYE KAERE','BAMBA NDIAYE','ISAIAS CEBALLOS','ASIER ANDER RIVERO'],
+      ['ALVARO SOBRINO','CARLOS RODRIGUEZ','MBAYE KAERE','CIPRIAN BAESU','LUCIANO','EMILIO MARCOS','ISAIAS CEBALLOS'],
+      ['MANUEL FERNANDEZ TRESPALACIOS','ALVARO SOBRINO','CARLOS RODRIGUEZ','EMILIO MARCOS','','BAMBA NDIAYE','JOSE LUIS NUÑEZ'],
+      ['','MANUEL FERNANDEZ TRESPALACIOS','CIPRIAN BAESU','JAGOBA','','LUCIANO','RUBEN GION'],
+      ['','','LUIS ALFREDO','','','ALFREDO MANUEL SOBRINO','RUBEN DARIO'],
+      ['','','','','','','JAVIER MENENDEZ'],
     ],
-    note:''
+    note:'SEMANA 4'
+  },
+  {
+    dates:['LUN 24','MAR 25','MIÉ 26','JUE 27','VIE 28','SÁB 29','DOM 30'],
+    nums:[24,25,26,27,28,29,30],
+    workers:[
+      ['ALFONSO TORRES','IBRAHIMA DIA','JUAN PRIETO','JUAN MANUEL VEGA','MARCOS PEREIRA','RUBEN GION','GERARDO'],
+      ['CIPRIAN BAESU','ALFREDO MANUEL SOBRINO','IBRAHIMA DIA','MBAYE KAERE','LUIS ALFREDO','BAMBA NDIAYE','JESUS P. OLIVA'],
+      ['MANUEL FERNANDEZ TRESPALACIOS','CARLOS RODRIGUEZ','FELIX GARCIA','FELIX GARCIA','','EMILIO MARCOS','ASIER ANDER RIVERO'],
+      ['ALVARO SOBRINO','JAGOBA','JAVIER MENENDEZ','JAVIER MENENDEZ','','RUBEN DARIO','ISAIAS CEBALLOS'],
+      ['','','JAGOBA','LUCIANO','','','JOSE LUIS NUÑEZ'],
+      ['','','LUIS ALFREDO','','','','RUBEN GION'],
+      ['','','','','','','ALFREDO MANUEL SOBRINO'],
+    ],
+    note:'SEMANA 5'
+  },
+  {
+    dates:['LUN (31)','MAR (1)','MIÉ (2)','JUE (3)','VIE (4)','SÁB (5)','DOM (6)'],
+    nums:[31,1,2,3,4,5,6],
+    months:[7,8,8,8,8,8,8],
+    workers:[
+      ['GERARDO','IBRAHIMA DIA','JOSE LUIS NUÑEZ','JUAN MANUEL VEGA','FELIX GARCIA','JESUS P. OLIVA','GERARDO'],
+      ['ALFONSO TORRES','RUBEN DARIO','JUAN MANUEL VEGA','JUAN PRIETO','MARCOS PEREIRA','ASIER ANDER RIVERO','JESUS P. OLIVA'],
+      ['MARCOS PEREIRA','ALFONSO TORRES','JUAN PRIETO','MBAYE KAERE','BAMBA NDIAYE','ISAIAS CEBALLOS','ASIER ANDER RIVERO'],
+      ['ALVARO SOBRINO','CARLOS RODRIGUEZ','MBAYE KAERE','CIPRIAN BAESU','LUCIANO','EMILIO MARCOS','ISAIAS CEBALLOS'],
+      ['JAGOBA','ALVARO SOBRINO','CARLOS RODRIGUEZ','EMILIO MARCOS','','BAMBA NDIAYE','JOSE LUIS NUÑEZ'],
+      ['','MANUEL FERNANDEZ TRESPALACIOS','CIPRIAN BAESU','JAGOBA','','LUCIANO','RUBEN GION'],
+      ['','','LUIS ALFREDO','','','ALFREDO MANUEL SOBRINO','RUBEN DARIO'],
+      ['','','','','','','JAVIER MENENDEZ'],
+      ['','','','','','','MANUEL FERNANDEZ TRESPALACIOS'],
+    ],
+    note:'SEMANA 6 — LUN 31 es AGOSTO; MAR 1 a DOM 6 son días de SEPTIEMBRE'
   },
 ];
 
@@ -465,13 +470,13 @@ function updatePanel(){
   const name=sel.value;
   const panel=document.getElementById('infoPanel');
   if(!name){
-    panel.innerHTML='<p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO EN JULIO 2026</p>';
+    panel.innerHTML='<p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO (27 JUL — 6 SEP 2026)</p>';
     renderTable('');return;
   }
   const restDays=getRestDays(name);
 
   let html=`<div class="info-name">${name}</div>`;
-  html+=`<div class="info-intro">// DÍAS DE DESCANSO EN JULIO 2026 (${restDays.length} días en el cuadrante):</div><div class="info-days">`;
+  html+=`<div class="info-intro">// DÍAS DE DESCANSO (27 JUL — 6 SEP 2026) (${restDays.length} días en el cuadrante):</div><div class="info-days">`;
   restDays.forEach(d=>{ html+=`<span class="day-badge">${d.date}</span>`; });
   if(!restDays.length) html+=`<span style="font-size:.7rem;color:rgba(200,220,255,.4)">SIN DESCANSOS EN EL CUADRANTE</span>`;
   html+=`</div>`;
@@ -490,13 +495,15 @@ function getDatePlusDays(offset){
 }
 
 function getRestingOnDate(date){
-  const isJulio=(date.getFullYear()===2026&&date.getMonth()===6);
-  if(!isJulio) return null; // not in range
-  const dayNum=date.getDate();
+  const y=date.getFullYear(), m=date.getMonth(), d=date.getDate();
+  const inRange=(y===2026)&&((m===6&&d>=27)||(m===7)||(m===8&&d<=6));
+  if(!inRange) return null;
   const resting=[];
   weeks.forEach(week=>{
     week.nums.forEach((num,di)=>{
-      if(num===dayNum){
+      if(num===null||num===undefined) return;
+      const weekMonth=week.months?week.months[di]:7;
+      if(num===d&&weekMonth===m){
         week.workers.forEach(row=>{
           const n=row[di];
           if(n&&n.trim()&&!resting.includes(n.trim())) resting.push(n.trim());
@@ -516,13 +523,16 @@ function setDay(offset, btn){
   const resting=getRestingOnDate(date);
   const allNames=[...allWorkers];
 
-  const amarillos=new Set(['ALFONSO TORRES','CIPRIAN BAESU','CARLOS RODRIGUEZ MALDONADO','MARCOS PEREIRA','FELIX GARCIA','JUAN PRIETO','JAVIER MENENDEZ','MBAYE KAERE','EMILIO MARCOS','IBRAHIN DIA','ISAIAS CEBALLO PIEDRA']);
-  const azules=new Set(['LUIS ALFREDO','JAGOBA','ALVARO SOBRINO GUTIERREZ','JUAN MANUEL VEGA GOMEZ','BAMBA NDIAYE','JESUS P. OLIVA','GERARDO','ASIER ANDER RIVERO RODRIGUEZ']);
-  const verdes=new Set(['ALFREDO MANUEL SOBRINO SAMPEDRO','RUBEN GION','RUBEN DARIO','JOSE LUIS NUÑEZ JUNCO']);
-  const lavandas=new Set(['LUCIANO']);
+  const dorados=new Set(['JUAN PRIETO','MBAYE KAERE','IBRAHIMA DIA']);
+  const azules=new Set(['ASIER ANDER RIVERO','GERARDO','JESUS P. OLIVA','JUAN MANUEL VEGA']);
+  const cyanes=new Set(['JAGOBA','ALVARO SOBRINO GUTIERREZ','ALVARO SOBRINO','BAMBA NDIAYE','LUIS ALFREDO']);
+  const verdes=new Set(['JOSE LUIS NUÑEZ','RUBEN GION','RUBEN DARIO','ALFREDO MANUEL SOBRINO SAMPEDRO','ALFREDO MANUEL SOBRINO']);
+  const rosas=new Set(['LUCIANO']);
+  const rojos=new Set(['MANUEL FERNANDEZ TRESPALACIOS']);
+  const amarillos=new Set(['ALFONSO TORRES','MARCOS PEREIRA','CIPRIAN BAESU','ISAIAS CEBALLO PIEDRA','CARLOS RODRIGUEZ MALDONADO','CARLOS RODRIGUEZ','FELIX GARCIA','EMILIO MARCOS','JAVIER MENENDEZ']);
 
-  function badgeClass(n){ if(amarillos.has(n))return'amarillo'; if(azules.has(n))return'azul'; if(verdes.has(n))return'verde'; if(lavandas.has(n))return'lavanda'; return''; }
-  function prefix(n){ return(amarillos.has(n)||azules.has(n)||verdes.has(n)||lavandas.has(n))?'🧹 ':''; }
+  function badgeClass(n){ if(dorados.has(n))return'dorado'; if(azules.has(n))return'azul'; if(cyanes.has(n))return'cian'; if(verdes.has(n))return'verde'; if(rosas.has(n))return'rosa'; if(rojos.has(n))return'rojo'; if(amarillos.has(n))return'amarillo'; return''; }
+  function prefix(n){ return(dorados.has(n)||azules.has(n)||cyanes.has(n)||verdes.has(n)||rosas.has(n)||rojos.has(n)||amarillos.has(n))?'🧹 ':''; }
   function makeBadge(baseClass,n){ const c=badgeClass(n); return`<div class="${baseClass}${c?' '+c:''}">${prefix(n)}${n}</div>`; }
 
   // DESCANSAN panel
@@ -531,7 +541,7 @@ function setDay(offset, btn){
   h+=`<div class="hoy-title">⬡ DESCANSAN ${label} ⬡</div>`;
   h+=`<div class="hoy-names">`;
   if(resting===null){
-    h+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE ES DE JULIO 2026</span>`;
+    h+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE CUBRE 27 JUL — 6 SEP 2026</span>`;
   } else if(resting.length){
     resting.forEach(n=>{ h+=makeBadge('hoy-badge',n); });
   } else {
@@ -546,7 +556,7 @@ function setDay(offset, btn){
   w+=`<div class="work-title">⬡ TRABAJANDO ${label} ⬡</div>`;
   w+=`<div class="hoy-names">`;
   if(resting===null){
-    w+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE ES DE JULIO 2026</span>`;
+    w+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE CUBRE 27 JUL — 6 SEP 2026</span>`;
   } else {
     const working=allNames.filter(n=>!resting.includes(n));
     if(working.length){
