@@ -318,7 +318,7 @@ for(let i=0;i<18;i++){
   <section>
     <div class="section-label">// DÍAS DE DESCANSO DEL OPERARIO SELECCIONADO //</div>
     <div class="info-panel" id="infoPanel">
-      <p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO (27 JUL — 6 SEP 2026)</p>
+      <p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO (27 JUL — 13 SEP 2026)</p>
     </div>
   </section>
 
@@ -410,13 +410,13 @@ const weeks=[
     dates:['LUN 24','MAR 25','MIÉ 26','JUE 27','VIE 28','SÁB 29','DOM 30'],
     nums:[24,25,26,27,28,29,30],
     workers:[
-      ['ALFONSO TORRES','IBRAHIMA DIA','JUAN PRIETO','JUAN MANUEL VEGA','MARCOS PEREIRA','RUBEN GION','GERARDO'],
-      ['CIPRIAN BAESU','ALFREDO MANUEL SOBRINO','IBRAHIMA DIA','MBAYE KAERE','LUIS ALFREDO','BAMBA NDIAYE','JESUS P. OLIVA'],
-      ['MANUEL FERNANDEZ TRESPALACIOS','CARLOS RODRIGUEZ','FELIX GARCIA','FELIX GARCIA','','EMILIO MARCOS','ASIER ANDER RIVERO'],
-      ['ALVARO SOBRINO','JAGOBA','JAVIER MENENDEZ','JAVIER MENENDEZ','','RUBEN DARIO','ISAIAS CEBALLOS'],
-      ['','','JAGOBA','LUCIANO','','','JOSE LUIS NUÑEZ'],
-      ['','','LUIS ALFREDO','','','','RUBEN GION'],
-      ['','','','','','','ALFREDO MANUEL SOBRINO'],
+      ['CARLOS RODRIGUEZ','IBRAHIMA DIA','JUAN PRIETO','JUAN MANUEL VEGA','MARCOS PEREIRA','RUBEN GION','GERARDO'],
+      ['CIPRIAN BAESU','ALFREDO MANUEL SOBRINO','IBRAHIMA DIA','MBAYE KAERE','BAMBA NDIAYE','EMILIO MARCOS','JESUS P. OLIVA'],
+      ['MANUEL FERNANDEZ TRESPALACIOS','ALFONSO TORRES','ISAIAS CEBALLOS','RUBEN DARIO','CIPRIAN BAESU','','FELIX GARCIA'],
+      ['ALVARO SOBRINO','JAGOBA','JAVIER MENENDEZ','FELIX GARCIA','','','EMILIO MARCOS'],
+      ['','','JAGOBA','JAVIER MENENDEZ','','','RUBEN GION'],
+      ['','','','LUCIANO','','','ALFREDO MANUEL SOBRINO'],
+      ['','','','ANGEL DEL HOYO GONZALEZ','','','JOSE LUIS NUÑEZ'],
     ],
     note:'SEMANA 5'
   },
@@ -426,16 +426,28 @@ const weeks=[
     months:[7,8,8,8,8,8,8],
     workers:[
       ['GERARDO','IBRAHIMA DIA','JOSE LUIS NUÑEZ','JUAN MANUEL VEGA','FELIX GARCIA','JESUS P. OLIVA','GERARDO'],
-      ['ALFONSO TORRES','RUBEN DARIO','JUAN MANUEL VEGA','JUAN PRIETO','MARCOS PEREIRA','ASIER ANDER RIVERO','JESUS P. OLIVA'],
-      ['MARCOS PEREIRA','ALFONSO TORRES','JUAN PRIETO','MBAYE KAERE','BAMBA NDIAYE','ISAIAS CEBALLOS','ASIER ANDER RIVERO'],
-      ['ALVARO SOBRINO','CARLOS RODRIGUEZ','MBAYE KAERE','CIPRIAN BAESU','LUCIANO','EMILIO MARCOS','ISAIAS CEBALLOS'],
-      ['JAGOBA','ALVARO SOBRINO','CARLOS RODRIGUEZ','EMILIO MARCOS','','BAMBA NDIAYE','JOSE LUIS NUÑEZ'],
-      ['','MANUEL FERNANDEZ TRESPALACIOS','CIPRIAN BAESU','JAGOBA','','LUCIANO','RUBEN GION'],
-      ['','','LUIS ALFREDO','','','ALFREDO MANUEL SOBRINO','RUBEN DARIO'],
-      ['','','','','','','JAVIER MENENDEZ'],
-      ['','','','','','','MANUEL FERNANDEZ TRESPALACIOS'],
+      ['ALFONSO TORRES','RUBEN DARIO','JUAN MANUEL VEGA','JUAN PRIETO','MARCOS PEREIRA','ISAIAS CEBALLOS','JESUS P. OLIVA'],
+      ['MARCOS PEREIRA','ALFONSO TORRES','JUAN PRIETO','MBAYE KAERE','BAMBA NDIAYE','EMILIO MARCOS','ISAIAS CEBALLOS'],
+      ['ALVARO SOBRINO','CARLOS RODRIGUEZ','MBAYE KAERE','ALFREDO MANUEL SOBRINO','LUCIANO','LUCIANO','JOSE LUIS NUÑEZ'],
+      ['JAGOBA','ALVARO SOBRINO','CARLOS RODRIGUEZ','CIPRIAN BAESU','','','RUBEN GION'],
+      ['MANUEL FERNANDEZ TRESPALACIOS','MANUEL FERNANDEZ TRESPALACIOS','CIPRIAN BAESU','EMILIO MARCOS','','','RUBEN DARIO'],
+      ['','ANGEL DEL HOYO GONZALEZ','','BAMBA NDIAYE','','','JAVIER MENENDEZ'],
     ],
     note:'SEMANA 6 — LUN 31 es AGOSTO; MAR 1 a DOM 6 son días de SEPTIEMBRE'
+  },
+  {
+    dates:['LUN 7','MAR 8','MIÉ 9','JUE 10','VIE 11','SÁB 12','DOM 13'],
+    nums:[7,8,9,10,11,12,13],
+    months:[8,8,8,8,8,8,8],
+    workers:[
+      ['ALFONSO TORRES','JAGOBA','CIPRIAN BAESU','FELIX GARCIA','FELIX GARCIA','JAVIER MENENDEZ','GERARDO'],
+      ['ALVARO SOBRINO','RUBEN DARIO','EMILIO MARCOS','LUCIANO','JAVIER MENENDEZ','RUBEN GION','JESUS P. OLIVA'],
+      ['MANUEL FERNANDEZ TRESPALACIOS','IBRAHIMA DIA','JAGOBA','MBAYE KAERE','BAMBA NDIAYE','ANGEL DEL HOYO GONZALEZ','RUBEN GION'],
+      ['','CARLOS RODRIGUEZ','JUAN PRIETO','MARCOS PEREIRA','','','ISAIAS CEBALLOS'],
+      ['','','IBRAHIMA DIA','ALFREDO MANUEL SOBRINO','','','ALFREDO MANUEL SOBRINO'],
+      ['','','JUAN MANUEL VEGA','JOSE LUIS NUÑEZ','','','ANGEL DEL HOYO GONZALEZ'],
+    ],
+    note:'SEMANA 7 — 7 a 13 de SEPTIEMBRE'
   },
 ];
 
@@ -470,13 +482,13 @@ function updatePanel(){
   const name=sel.value;
   const panel=document.getElementById('infoPanel');
   if(!name){
-    panel.innerHTML='<p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO (27 JUL — 6 SEP 2026)</p>';
+    panel.innerHTML='<p class="info-placeholder">► SELECCIONA UN OPERARIO PARA VER SUS DÍAS DE DESCANSO (27 JUL — 13 SEP 2026)</p>';
     renderTable('');return;
   }
   const restDays=getRestDays(name);
 
   let html=`<div class="info-name">${name}</div>`;
-  html+=`<div class="info-intro">// DÍAS DE DESCANSO (27 JUL — 6 SEP 2026) (${restDays.length} días en el cuadrante):</div><div class="info-days">`;
+  html+=`<div class="info-intro">// DÍAS DE DESCANSO (27 JUL — 13 SEP 2026) (${restDays.length} días en el cuadrante):</div><div class="info-days">`;
   restDays.forEach(d=>{ html+=`<span class="day-badge">${d.date}</span>`; });
   if(!restDays.length) html+=`<span style="font-size:.7rem;color:rgba(200,220,255,.4)">SIN DESCANSOS EN EL CUADRANTE</span>`;
   html+=`</div>`;
@@ -496,7 +508,7 @@ function getDatePlusDays(offset){
 
 function getRestingOnDate(date){
   const y=date.getFullYear(), m=date.getMonth(), d=date.getDate();
-  const inRange=(y===2026)&&((m===6&&d>=27)||(m===7)||(m===8&&d<=6));
+  const inRange=(y===2026)&&((m===6&&d>=27)||(m===7)||(m===8&&d<=13));
   if(!inRange) return null;
   const resting=[];
   weeks.forEach(week=>{
@@ -541,7 +553,7 @@ function setDay(offset, btn){
   h+=`<div class="hoy-title">⬡ DESCANSAN ${label} ⬡</div>`;
   h+=`<div class="hoy-names">`;
   if(resting===null){
-    h+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE CUBRE 27 JUL — 6 SEP 2026</span>`;
+    h+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE CUBRE 27 JUL — 13 SEP 2026</span>`;
   } else if(resting.length){
     resting.forEach(n=>{ h+=makeBadge('hoy-badge',n); });
   } else {
@@ -556,7 +568,7 @@ function setDay(offset, btn){
   w+=`<div class="work-title">⬡ TRABAJANDO ${label} ⬡</div>`;
   w+=`<div class="hoy-names">`;
   if(resting===null){
-    w+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE CUBRE 27 JUL — 6 SEP 2026</span>`;
+    w+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE CUBRE 27 JUL — 13 SEP 2026</span>`;
   } else {
     const working=allNames.filter(n=>!resting.includes(n));
     if(working.length){
