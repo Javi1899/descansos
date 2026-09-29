@@ -506,14 +506,28 @@ function setDay(offset, btn){
   const resting=getRestingOnDate(date);
   const allNames=[...allWorkers];
 
-  const dorados=new Set(['JUAN PRIETO','MBAYE KAERE','IBRAHIMA DIA','EMILIO MARCOS','CIPRIAN BAESU','MARCOS PEREIRA','VICTORIANO ANCA ROMANO','LUIS FCO. ALONSO ALVAREZ','JAVIER MENENDEZ']);
+  // COLORES DE LOS OPERARIOS
+  // AMARILLO: CIPRIAN BAESU, MARCOS PEREIRA, LUIS FCO. ALONSO ALVAREZ,
+  // JAVIER MENENDEZ, VICTORIANO ANCA y EMILIO MARCOS.
+  // Se contemplan también las variantes de nombre que aparecen en el cuadrante.
+  const amarillos=new Set([
+    'CIPRIAN BAESU',
+    'MARCOS PEREIRA',
+    'LUIS FCO. ALONSO ALVAREZ',
+    'JAVIER MENENDEZ',
+    'VICTORIANO ANCA',
+    'VICTORIANO ANCA ROMANO',
+    'EMILIO MARCOS',
+    'EMILIO MARCOS SANCHEZ'
+  ]);
+  const dorados=new Set(['JUAN PRIETO','MBAYE KAERE','IBRAHIMA DIA']);
   const azules=new Set(['GERARDO','JESUS P. OLIVA','FELIX GARCIA FERNANDEZ','ANGEL DEL HOYO GONZALEZ','BAMBA NDIAYE','JAGOBA']);
   const cyanes=new Set([]);
   const verdes=new Set(['RUBEN DARIO','BENITO ROMANO NORIEGA','GABRIEL ANTUNEZ']);
   const rosas=new Set(['LUCIANO']);
   const rojos=new Set([]);
 
-  function badgeClass(n){ if(dorados.has(n))return'dorado'; if(azules.has(n))return'azul'; if(cyanes.has(n))return'cian'; if(verdes.has(n))return'verde'; if(rosas.has(n))return'rosa'; if(rojos.has(n))return'rojo'; if(amarillos.has(n))return'amarillo'; return''; }
+  function badgeClass(n){ if(amarillos.has(n))return'amarillo'; if(dorados.has(n))return'dorado'; if(azules.has(n))return'azul'; if(cyanes.has(n))return'cian'; if(verdes.has(n))return'verde'; if(rosas.has(n))return'rosa'; if(rojos.has(n))return'rojo'; return''; }
   function prefix(n){ return(dorados.has(n)||azules.has(n)||cyanes.has(n)||verdes.has(n)||rosas.has(n)||rojos.has(n)||amarillos.has(n))?'🧹 ':''; }
   function makeBadge(baseClass,n){ const c=badgeClass(n); return`<div class="${baseClass}${c?' '+c:''}">${prefix(n)}${n}</div>`; }
 
@@ -540,7 +554,11 @@ function setDay(offset, btn){
   if(resting===null){
     w+=`<span class="hoy-none">SIN DATOS — EL CUADRANTE CUBRE 28 SEP — 1 NOV 2026</span>`;
   } else {
-    const working=allNames.filter(n=>!resting.includes(n));
+    // VACACIONES: del 16 al 30 de octubre no se muestran en TRABAJANDO
+    // EMILIO MARCOS (EMILIO MARCOS SANCHEZ) ni RUBEN DARIO.
+    const isVacationPeriod = date.getFullYear()===2026 && date.getMonth()===9 && date.getDate()>=16 && date.getDate()<=30;
+    const vacationNames = new Set(['EMILIO MARCOS','EMILIO MARCOS SANCHEZ','RUBEN DARIO']);
+    const working=allNames.filter(n=>!resting.includes(n) && !(isVacationPeriod && vacationNames.has(n)));
     if(working.length){
       working.forEach(n=>{ w+=makeBadge('work-badge',n); });
     } else {
