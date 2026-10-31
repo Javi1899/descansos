@@ -618,7 +618,10 @@ function setDay(offset, btn){
     // AUSENTES DE TRABAJANDO el 30 de octubre de 2026
     const isOct30 = date.getFullYear()===2026 && date.getMonth()===9 && date.getDate()===30;
     const ausentes30 = new Set(['LUIS FCO. ALONSO ALVAREZ','EMILIO MARCOS']);
-    const working=allNames.filter(n=>!resting.includes(n) && !(isOct30 && ausentes30.has(n)));
+    // VACACIONES: CIPRIAN BAESU del 2 de noviembre al 1 de diciembre de 2026 (ambos incluidos)
+    const tMs=new Date(date.getFullYear(),date.getMonth(),date.getDate()).getTime();
+    const enVacCiprian = tMs>=new Date(2026,10,2).getTime() && tMs<=new Date(2026,11,1).getTime();
+    const working=allNames.filter(n=>!resting.includes(n) && !(isOct30 && ausentes30.has(n)) && !(enVacCiprian && n==='CIPRIAN BAESU'));
     if(working.length){
       working.forEach(n=>{ w+=makeBadge('work-badge',n); });
     } else {
