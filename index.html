@@ -289,7 +289,7 @@
   #intro{
     position:fixed;inset:0;z-index:2000;background:#020510;overflow:hidden;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
-    animation:introOut .5s ease-in 2.6s forwards;
+    animation:introOut .5s ease-in 4.5s forwards;
   }
   @keyframes introOut{to{opacity:0;visibility:hidden;transform:scale(1.08)}}
   #intro .ig{
@@ -328,7 +328,7 @@
   #intro .ititle{
     position:relative;z-index:2;text-align:center;
     font-family:'Orbitron',sans-serif;font-weight:900;color:#fff;
-    font-size:clamp(1.7rem,7.2vw,4.6rem);line-height:1.1;
+    font-size:clamp(2rem,10vw,5.2rem);line-height:1.15;white-space:pre-line;padding:0 .5rem;
     text-shadow:0 0 22px #00f5ffaa,0 0 60px #00f5ff55;
     opacity:0;letter-spacing:.9em;
     animation:ititleIn 1.1s cubic-bezier(.2,.8,.2,1) .25s forwards;
@@ -358,7 +358,7 @@
   #intro .ibar::after{
     content:'';position:absolute;inset:0;transform:scaleX(0);transform-origin:left;
     background:linear-gradient(90deg,#00f5ff,#ff00aa);box-shadow:0 0 14px #00f5ff;
-    animation:ibar 2.5s cubic-bezier(.4,0,.2,1) forwards;
+    animation:ibar 4.4s cubic-bezier(.4,0,.2,1) forwards;
   }
   @keyframes ibar{to{transform:scaleX(1)}}
   #intro .iskip{
@@ -379,7 +379,7 @@
   <div class="iring"></div>
   <div class="iring r2"></div>
   <div class="iscan"></div>
-  <div class="ititle" data-t="DESCANSOS LLANES">DESCANSOS LLANES</div>
+  <div class="ititle" data-t="DESCANSOS&#10;LLANES">DESCANSOS<br>LLANES</div>
   <div class="isub" id="introFecha">Última actualización</div>
   <div class="ibar"></div>
   <div class="iskip">TOCA PARA SALTAR</div>
@@ -388,7 +388,7 @@
 // Fecha de la última actualización del HTML (cámbiala al actualizar la web)
 const ULTIMA_ACTUALIZACION='1 de noviembre de 2026';
 document.getElementById('introFecha').textContent='Última actualización: '+ULTIMA_ACTUALIZACION;
-setTimeout(()=>{const i=document.getElementById('intro');if(i)i.remove();},3200);
+setTimeout(()=>{const i=document.getElementById('intro');if(i)i.remove();},5200);
 </script>
 
 <script>
