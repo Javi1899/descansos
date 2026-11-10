@@ -192,6 +192,28 @@
   @keyframes findeSweep { 0%{left:-80px} 60%,100%{left:110%} }
   .finde-sub { display:block;font-family:'Share Tech Mono',monospace;font-weight:400;font-size:.6rem;letter-spacing:.35em;color:rgba(255,179,0,.7);margin-bottom:.4rem; }
 
+  /* AVISO GERARDO — GERARDO DA DESCANSO A RUBEN DARIO / BENITO ROMANO NORIEGA */
+  .gerardo-note {
+    position:relative;overflow:hidden;text-align:center;
+    border:2px solid #00ff6a;
+    padding:1.1rem 1.5rem;
+    font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(.8rem,2.6vw,1.2rem);
+    letter-spacing:.2em;color:#00ff6a;text-shadow:0 0 14px #00ff6aaa;
+    background:repeating-linear-gradient(45deg,rgba(0,255,106,.07) 0 14px,rgba(0,255,106,.16) 14px 28px);
+    box-shadow:0 0 22px #00ff6a77,0 0 60px #00ff6a33;
+    animation:gerardoPulse 1.6s ease-in-out infinite;
+  }
+  .gerardo-note::after {
+    content:'';position:absolute;top:0;bottom:0;width:60px;left:-80px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+    transform:skewX(-20deg);animation:findeSweep 3s ease-in-out infinite;
+  }
+  .gerardo-note .g-line + .g-line { margin-top:.5rem; }
+  @keyframes gerardoPulse {
+    0%,100%{box-shadow:0 0 22px #00ff6a77,0 0 60px #00ff6a33;border-color:#00ff6a}
+    50%{box-shadow:0 0 36px #00ff6add,0 0 90px #00ff6a66;border-color:#b9ffd4}
+  }
+
   /* WORK PANEL */
   .work-panel {
     border:2px solid rgba(255,0,170,.4);
@@ -273,6 +295,13 @@
     animation:findePulse 1.6s ease-in-out infinite;
   }
 
+  .wk-tag-g {
+    margin-top:.35rem;padding:.25rem .3rem;
+    font-family:'Orbitron',sans-serif;font-size:.45rem;font-weight:700;letter-spacing:.06em;
+    color:#00ff6a;border:1px solid #00ff6a;background:rgba(0,255,106,.1);
+    animation:gerardoPulse 1.6s ease-in-out infinite;
+  }
+
   footer { border-top:1px solid rgba(0,245,255,.1);padding:2.5rem 0;text-align:center; }
   .footer-main { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:.25em;color:var(--cyan);text-shadow:var(--glow-cyan);margin-bottom:.8rem; }
   .footer-sub { font-size:.55rem;letter-spacing:.25em;color:rgba(0,245,255,.25); }
@@ -328,6 +357,11 @@ for(let i=0;i<18;i++){
       <span class="finde-sub">⚠ AVISO FIN DE SEMANA ⚠</span>
       ⚡ LUIS FRANCISCO JORNADA PARTIDA ⚡
     </div>
+  </section>
+
+  <!-- AVISO GERARDO (lunes a sábado) -->
+  <section id="gerardoSection" style="margin-bottom:1.5rem;display:none;">
+    <div class="gerardo-note" id="gerardoNote"></div>
   </section>
 
   <!-- DESCANSAN PANEL -->
@@ -541,6 +575,15 @@ const AMARILLOS=new Set([
 ]);
 function countAmarillos(names){ return names.filter(n=>AMARILLOS.has(n)).length; }
 
+// AVISO GERARDO: solo de lunes a sábado (nunca domingo, que descansan los tres) y solo si descansa RUBEN DARIO y/o BENITO ROMANO NORIEGA
+function gerardoAvisos(names,dow){
+  if(dow===0) return []; // 0 = domingo
+  const a=[];
+  if(names.includes('RUBEN DARIO')) a.push('GERARDO DA DESCANSO A RUBEN DARIO');
+  if(names.includes('BENITO ROMANO NORIEGA')) a.push('GERARDO DA DESCANSO A BENITO ROMANO NORIEGA');
+  return a;
+}
+
 function getRestingOnDate(date){
   const y=date.getFullYear(), m=date.getMonth(), d=date.getDate();
   const inRange=(y===2026)&&((m===9&&d>=26)||(m===10)||(m===11&&d<=6));
@@ -575,6 +618,11 @@ function setDay(offset, btn){
   const isFinde=(date.getDay()===0||date.getDay()===6);
   // Solo sale si sábado/domingo Y hay al menos 2 operarios con fondo amarillo descansando
   document.getElementById('findeSection').style.display=(isFinde&&resting!==null&&countAmarillos(resting)>=2)?'block':'none';
+
+  // AVISO GERARDO (verde)
+  const gAv=resting!==null?gerardoAvisos(resting,date.getDay()):[];
+  document.getElementById('gerardoNote').innerHTML=gAv.map(t=>`<div class="g-line">⚡ ${t} ⚡</div>`).join('');
+  document.getElementById('gerardoSection').style.display=gAv.length?'block':'none';
 
   // COLORES DE LOS OPERARIOS
   // AMARILLO: CIPRIAN BAESU, MARCOS PEREIRA, LUIS FCO. ALONSO ALVAREZ,
@@ -648,7 +696,8 @@ function renderTable(hl){
     week.dates.forEach((d,di)=>{
       const colNames=week.workers.map(r=>r[di]).filter(n=>n&&n.trim());
       const tag=(di>=5&&countAmarillos(colNames)>=2)?'<div class="wk-tag">⚡ LUIS FRANCISCO JORNADA PARTIDA</div>':'';
-      html+=`<td class="date-row">${d}${tag}</td>`;
+      const gTag=(di<6?gerardoAvisos(colNames,(di+1)%7):[]).map(t=>`<div class="wk-tag-g">⚡ ${t}</div>`).join('');
+      html+=`<td class="date-row">${d}${tag}${gTag}</td>`;
     });
     html+='</tr>';
 
