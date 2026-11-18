@@ -351,14 +351,6 @@ for(let i=0;i<18;i++){
     </div>
   </section>
 
-  <!-- NOTA SÁBADOS Y DOMINGOS -->
-  <section id="findeSection" style="margin-bottom:1.5rem;display:none;">
-    <div class="finde-note">
-      <span class="finde-sub">⚠ AVISO FIN DE SEMANA ⚠</span>
-      ⚡ LUIS FRANCISCO JORNADA PARTIDA ⚡
-    </div>
-  </section>
-
   <!-- AVISO GERARDO (lunes a sábado) -->
   <section id="gerardoSection" style="margin-bottom:1.5rem;display:none;">
     <div class="gerardo-note" id="gerardoNote"></div>
@@ -481,7 +473,7 @@ const weeks=[
     months:[10,10,10,10,10,10,10],
     workers:[
       ['EMILIO MARCOS','LUIS FCO. ALONSO ALVAREZ','JUAN PRIETO','MBAYE KAERE','BAMBA NDIAYE','JAGOBA','BENITO ROMANO NORIEGA'],
-      ['','RUBEN DARIO','MBAYE KAERE','LUCIANO','','GERARDO','RUBEN DARIO'],
+      ['MARCOS PEREIRA','RUBEN DARIO','MBAYE KAERE','LUCIANO','','GERARDO','RUBEN DARIO'],
       ['','','IBRAHIMA DIA','GABRIEL ANTUNEZ','','JESUS P. OLIVA','GERARDO'],
       ['','','GABRIEL ANTUNEZ','','','VICTORIANO ANCA ROMANO','JESUS P. OLIVA'],
       ['','','','','','LUCIANO','EMILIO MARCOS'],
@@ -495,7 +487,7 @@ const weeks=[
     months:[10,11,11,11,11,11,11],
     workers:[
       ['LUIS FCO. ALONSO ALVAREZ','GABRIEL ANTUNEZ','JUAN PRIETO','JUAN PRIETO','LUCIANO','JAGOBA','JESUS P. OLIVA'],
-      ['','','MBAYE KAERE','IBRAHIMA DIA','FELIX GARCIA FERNANDEZ','FELIX GARCIA FERNANDEZ','VICTORIANO ANCA ROMANO'],
+      ['MARCOS PEREIRA','MARCOS PEREIRA','MBAYE KAERE','IBRAHIMA DIA','FELIX GARCIA FERNANDEZ','FELIX GARCIA FERNANDEZ','VICTORIANO ANCA ROMANO'],
       ['','','IBRAHIMA DIA','LUIS FCO. ALONSO ALVAREZ','JAGOBA','EMILIO MARCOS','BAMBA NDIAYE'],
       ['','','CIPRIAN BAESU','','','VICTORIANO ANCA ROMANO','GERARDO'],
       ['','','','','','BENITO ROMANO NORIEGA','RUBEN DARIO'],
@@ -614,11 +606,6 @@ function setDay(offset, btn){
   // Solo operarios que aparecen en el cuadrante (el personal de baja o vacaciones no figura)
   const allNames=[...allWorkers];
 
-  // NOTA SÁBADOS Y DOMINGOS
-  const isFinde=(date.getDay()===0||date.getDay()===6);
-  // Solo sale si sábado/domingo Y hay al menos 2 operarios con fondo amarillo descansando
-  document.getElementById('findeSection').style.display=(isFinde&&resting!==null&&countAmarillos(resting)>=2)?'block':'none';
-
   // AVISO GERARDO (verde)
   const gAv=resting!==null?gerardoAvisos(resting,date.getDay()):[];
   document.getElementById('gerardoNote').innerHTML=gAv.map(t=>`<div class="g-line">⚡ ${t} ⚡</div>`).join('');
@@ -695,9 +682,8 @@ function renderTable(hl){
     html+=`<tr><td style="color:var(--magenta);font-size:.5rem;">SEM ${wi+1}</td>`;
     week.dates.forEach((d,di)=>{
       const colNames=week.workers.map(r=>r[di]).filter(n=>n&&n.trim());
-      const tag=(di>=5&&countAmarillos(colNames)>=2)?'<div class="wk-tag">⚡ LUIS FRANCISCO JORNADA PARTIDA</div>':'';
       const gTag=(di<6?gerardoAvisos(colNames,(di+1)%7):[]).map(t=>`<div class="wk-tag-g">⚡ ${t}</div>`).join('');
-      html+=`<td class="date-row">${d}${tag}${gTag}</td>`;
+      html+=`<td class="date-row">${d}${gTag}</td>`;
     });
     html+='</tr>';
 
