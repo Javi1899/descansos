@@ -295,6 +295,21 @@
     animation:findePulse 1.6s ease-in-out infinite;
   }
 
+  /* Variante ROJA del aviso (24 nov: FELIX da descanso a RUBEN DARIO) */
+  .gerardo-note.rojo {
+    border-color:#ff1f3d;color:#ff4d63;text-shadow:0 0 14px #ff1f3daa;
+    background:repeating-linear-gradient(45deg,rgba(255,31,61,.07) 0 14px,rgba(255,31,61,.18) 14px 28px);
+    box-shadow:0 0 22px #ff1f3d77,0 0 60px #ff1f3d33;
+    animation:rojoPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes rojoPulse {
+    0%,100%{box-shadow:0 0 22px #ff1f3d77,0 0 60px #ff1f3d33;border-color:#ff1f3d}
+    50%{box-shadow:0 0 36px #ff1f3ddd,0 0 90px #ff1f3d66;border-color:#ffb3bd}
+  }
+  .wk-tag-g.rojo {
+    color:#ff4d63;border-color:#ff1f3d;background:rgba(255,31,61,.12);
+    animation:rojoPulse 1.6s ease-in-out infinite;
+  }
   .wk-tag-g {
     margin-top:.35rem;padding:.25rem .3rem;
     font-family:'Orbitron',sans-serif;font-size:.45rem;font-weight:700;letter-spacing:.06em;
@@ -568,11 +583,14 @@ const AMARILLOS=new Set([
 function countAmarillos(names){ return names.filter(n=>AMARILLOS.has(n)).length; }
 
 // AVISO GERARDO: solo de lunes a sábado (nunca domingo, que descansan los tres) y solo si descansa RUBEN DARIO y/o BENITO ROMANO NORIEGA
-function gerardoAvisos(names,dow){
+// key = 'mes0-día' (mes 0-based). El 24 de nov (10-24) el aviso cambia: FELIX en lugar de GERARDO, en rojo.
+function gerardoAvisos(names,dow,key){
   if(dow===0) return []; // 0 = domingo
+  const quien=(key==='10-24')?'FELIX':'GERARDO';
+  const rojo=(key==='10-24');
   const a=[];
-  if(names.includes('RUBEN DARIO')) a.push('GERARDO DA DESCANSO A RUBEN DARIO');
-  if(names.includes('BENITO ROMANO NORIEGA')) a.push('GERARDO DA DESCANSO A BENITO ROMANO NORIEGA');
+  if(names.includes('RUBEN DARIO')) a.push({txt:quien+' DA DESCANSO A RUBEN DARIO',rojo});
+  if(names.includes('BENITO ROMANO NORIEGA')) a.push({txt:quien+' DA DESCANSO A BENITO ROMANO NORIEGA',rojo});
   return a;
 }
 
@@ -607,8 +625,10 @@ function setDay(offset, btn){
   const allNames=[...allWorkers];
 
   // AVISO GERARDO (verde)
-  const gAv=resting!==null?gerardoAvisos(resting,date.getDay()):[];
-  document.getElementById('gerardoNote').innerHTML=gAv.map(t=>`<div class="g-line">⚡ ${t} ⚡</div>`).join('');
+  const gAv=resting!==null?gerardoAvisos(resting,date.getDay(),date.getMonth()+'-'+date.getDate()):[];
+  const gNote=document.getElementById('gerardoNote');
+  gNote.innerHTML=gAv.map(a=>`<div class="g-line">⚡ ${a.txt} ⚡</div>`).join('');
+  gNote.classList.toggle('rojo',gAv.some(a=>a.rojo));
   document.getElementById('gerardoSection').style.display=gAv.length?'block':'none';
 
   // COLORES DE LOS OPERARIOS
@@ -682,7 +702,7 @@ function renderTable(hl){
     html+=`<tr><td style="color:var(--magenta);font-size:.5rem;">SEM ${wi+1}</td>`;
     week.dates.forEach((d,di)=>{
       const colNames=week.workers.map(r=>r[di]).filter(n=>n&&n.trim());
-      const gTag=(di<6?gerardoAvisos(colNames,(di+1)%7):[]).map(t=>`<div class="wk-tag-g">⚡ ${t}</div>`).join('');
+      const gTag=(di<6?gerardoAvisos(colNames,(di+1)%7,week.months[di]+'-'+week.nums[di]):[]).map(a=>`<div class="wk-tag-g${a.rojo?' rojo':''}">⚡ ${a.txt}</div>`).join('');
       html+=`<td class="date-row">${d}${gTag}</td>`;
     });
     html+='</tr>';
