@@ -487,11 +487,11 @@ const weeks=[
     nums:[23,24,25,26,27,28,29],
     months:[10,10,10,10,10,10,10],
     workers:[
-      ['EMILIO MARCOS','LUIS FCO. ALONSO ALVAREZ','JUAN PRIETO','MBAYE KAERE','BAMBA NDIAYE','JAGOBA','BENITO ROMANO NORIEGA'],
-      ['MARCOS PEREIRA','RUBEN DARIO','MBAYE KAERE','LUCIANO','','GERARDO','RUBEN DARIO'],
-      ['','','IBRAHIMA DIA','GABRIEL ANTUNEZ','','JESUS P. OLIVA','GERARDO'],
+      ['EMILIO MARCOS','EMILIO MARCOS','JUAN PRIETO','MBAYE KAERE','BAMBA NDIAYE','JAGOBA','BENITO ROMANO NORIEGA'],
+      ['MARCOS PEREIRA','RUBEN DARIO','MBAYE KAERE','GABRIEL ANTUNEZ','LUCIANO','GERARDO','RUBEN DARIO'],
+      ['','JUAN PRIETO','IBRAHIMA DIA','','','JESUS P. OLIVA','GERARDO'],
       ['','','GABRIEL ANTUNEZ','','','VICTORIANO ANCA ROMANO','JESUS P. OLIVA'],
-      ['','','','','','LUCIANO','EMILIO MARCOS'],
+      ['','','','','','LUCIANO','LUIS FCO. ALONSO ALVAREZ'],
       ['','','','','','FELIX GARCIA FERNANDEZ','BAMBA NDIAYE'],
     ],
     note:'SEMANA 5'
@@ -501,11 +501,11 @@ const weeks=[
     nums:[30,1,2,3,4,5,6],
     months:[10,11,11,11,11,11,11],
     workers:[
-      ['LUIS FCO. ALONSO ALVAREZ','GABRIEL ANTUNEZ','JUAN PRIETO','JUAN PRIETO','LUCIANO','JAGOBA','JESUS P. OLIVA'],
-      ['MARCOS PEREIRA','MARCOS PEREIRA','MBAYE KAERE','IBRAHIMA DIA','FELIX GARCIA FERNANDEZ','FELIX GARCIA FERNANDEZ','VICTORIANO ANCA ROMANO'],
-      ['','','IBRAHIMA DIA','LUIS FCO. ALONSO ALVAREZ','JAGOBA','EMILIO MARCOS','BAMBA NDIAYE'],
-      ['','','CIPRIAN BAESU','','','VICTORIANO ANCA ROMANO','GERARDO'],
-      ['','','','','','BENITO ROMANO NORIEGA','RUBEN DARIO'],
+      ['LUIS FCO. ALONSO ALVAREZ','GABRIEL ANTUNEZ','JUAN PRIETO','EMILIO MARCOS','LUCIANO','JAGOBA','JESUS P. OLIVA'],
+      ['MARCOS PEREIRA','MARCOS PEREIRA','MBAYE KAERE','BENITO ROMANO NORIEGA','JAGOBA','FELIX GARCIA FERNANDEZ','VICTORIANO ANCA ROMANO'],
+      ['','','GERARDO','','LUIS FCO. ALONSO ALVAREZ','VICTORIANO ANCA ROMANO','BAMBA NDIAYE'],
+      ['','','CIPRIAN BAESU','','','','FELIX GARCIA FERNANDEZ'],
+      ['','','','','','','RUBEN DARIO'],
       ['','','','','','','BENITO ROMANO NORIEGA'],
     ],
     note:'SEMANA 6 — LUN 30 es día de NOVIEMBRE; MAR 1 a DOM 6 son días de DICIEMBRE'
@@ -583,14 +583,21 @@ const AMARILLOS=new Set([
 function countAmarillos(names){ return names.filter(n=>AMARILLOS.has(n)).length; }
 
 // AVISO GERARDO: solo de lunes a sábado (nunca domingo, que descansan los tres) y solo si descansa RUBEN DARIO y/o BENITO ROMANO NORIEGA
-// key = 'mes0-día' (mes 0-based). El 24 de nov (10-24) el aviso cambia: FELIX en lugar de GERARDO, en rojo.
+// key = 'mes0-día' (mes 0-based). Desde el 24 nov: martes (RUBEN DARIO) y jueves (BENITO) lo da FELIX, en rojo.
 function gerardoAvisos(names,dow,key){
   if(dow===0) return []; // 0 = domingo
-  const quien=(key==='10-24')?'FELIX':'GERARDO';
-  const rojo=(key==='10-24');
+  if(key==='11-5') return []; // sábado 5 dic: sin aviso
+  const [m,d]=key.split('-').map(Number);
+  const desde24=(m>10)||(m===10&&d>=24); // FELIX (rojo) solo a partir del 24 nov
   const a=[];
-  if(names.includes('RUBEN DARIO')) a.push({txt:quien+' DA DESCANSO A RUBEN DARIO',rojo});
-  if(names.includes('BENITO ROMANO NORIEGA')) a.push({txt:quien+' DA DESCANSO A BENITO ROMANO NORIEGA',rojo});
+  if(names.includes('RUBEN DARIO')){
+    if(desde24&&dow===2) a.push({txt:'FELIX DA DESCANSO A RUBEN DARIO',rojo:true}); // martes
+    else a.push({txt:'GERARDO DA DESCANSO A RUBEN DARIO',rojo:false});
+  }
+  if(names.includes('BENITO ROMANO NORIEGA')){
+    if(desde24&&dow===4) a.push({txt:'FELIX DA DESCANSO A BENITO',rojo:true}); // jueves
+    else a.push({txt:'GERARDO DA DESCANSO A BENITO ROMANO NORIEGA',rojo:false});
+  }
   return a;
 }
 
